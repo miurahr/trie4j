@@ -50,13 +50,6 @@ implements Externalizable, MapTrie<T>{
 		return trie.commonPrefixSearch(query);
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public int findWord(CharSequence chars, int start, int end,
-			StringBuilder word) {
-		return trie.findWord(chars, start, end, word);
-	}
-
 	@Override
 	public int findShortestWord(CharSequence chars, int start, int end,
 			StringBuilder word) {
