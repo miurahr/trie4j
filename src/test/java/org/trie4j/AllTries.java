@@ -19,12 +19,10 @@ import org.trie4j.bv.BytesSuccinctBitVector;
 import org.trie4j.bv.LongsConstantTimeSelect0SuccinctBitVector;
 import org.trie4j.bv.LongsRank0OnlySuccinctBitVector;
 import org.trie4j.bv.LongsSuccinctBitVector;
-import org.trie4j.bv.UnsafeBytesSuccinctBitVector;
 import org.trie4j.doublearray.DoubleArray;
 import org.trie4j.doublearray.MapDoubleArray;
 import org.trie4j.doublearray.MapTailDoubleArray;
 import org.trie4j.doublearray.TailDoubleArray;
-import org.trie4j.doublearray.UnsafeDoubleArray;
 import org.trie4j.louds.MapTailLOUDSTrie;
 import org.trie4j.louds.TailLOUDSTrie;
 import org.trie4j.louds.bvtree.LOUDSBvTree;
@@ -550,7 +548,6 @@ public class AllTries {
 //*/
 //*
 			new TrieProcess().second(DoubleArray.class),
-			new TrieProcess().second(UnsafeDoubleArray.class),
 			new TrieProcess().second(TailDoubleArray.class, ConcatTailArrayBuilder.class),
 			new TrieProcess().second(TailDoubleArray.class, SuffixTrieTailArray.class),
 			new TrieProcess().second(TailDoubleArray.class, SuffixTrieDenseIndexNonstrictincTailArrayBuilder.class),
@@ -564,7 +561,6 @@ public class AllTries {
 */
 //*
 			new TrieProcess().second(TailLOUDSTrie.class, new Class[]{LOUDSBvTree.class, BytesSuccinctBitVector.class}, ConcatTailArrayBuilder.class),
-			new TrieProcess().second(TailLOUDSTrie.class, new Class[]{LOUDSBvTree.class, UnsafeBytesSuccinctBitVector.class}, ConcatTailArrayBuilder.class),
 			new TrieProcess().second(TailLOUDSTrie.class, new Class[]{LOUDSBvTree.class, BytesConstantTimeSelect0SuccinctBitVector.class}, ConcatTailArrayBuilder.class),
 			new TrieProcess().second(TailLOUDSTrie.class, new Class[]{LOUDSBvTree.class, LongsSuccinctBitVector.class}, ConcatTailArrayBuilder.class),
 			new TrieProcess().second(TailLOUDSTrie.class, new Class[]{LOUDSBvTree.class, LongsConstantTimeSelect0SuccinctBitVector.class}, ConcatTailArrayBuilder.class),

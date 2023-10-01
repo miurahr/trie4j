@@ -52,16 +52,6 @@ public class Issue_031 {
 	}
 
 	@Test
-	public void test_UnsafeDoubleArray() throws Throwable{
-		Trie trie = new PatriciaTrie();
-		insertLines(trie, FILE_NAME);
-		@SuppressWarnings("deprecation")
-		Trie da = new org.trie4j.doublearray.UnsafeDoubleArray(trie);
-		Assert.assertFalse(trie.contains("you"));
-		Assert.assertFalse(da.contains("you"));
-	}
-
-	@Test
 	public void test_MapDoubleArray() throws Throwable{
 		MapTrie<Object> mpt = new MapPatriciaTrie<>();
 		insertLines(mpt, FILE_NAME);
