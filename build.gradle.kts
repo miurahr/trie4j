@@ -139,6 +139,7 @@ tasks.withType<Javadoc> {
 }
 
 spotless {
+    setEnforceCheck(true)
     java {
         target(listOf("src/main/java/**/*.java", "src/test/java/**/*.java"))
         removeUnusedImports()
