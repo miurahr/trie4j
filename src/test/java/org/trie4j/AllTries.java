@@ -133,7 +133,7 @@ public class AllTries {
 
         @SuppressWarnings("unchecked")
         public Trio<Object, Long, Long> run() throws Throwable {
-            Set<String> set = (Set<String>) clazz.newInstance();
+            Set<String> set = (Set<String>) clazz.getDeclaredConstructor().newInstance();
             long b = 0, c = 0;
             LapTimer lt = new LapTimer();
             for (String w : newWords()) {
@@ -163,7 +163,8 @@ public class AllTries {
 
         @SuppressWarnings("unchecked")
         public Trio<Object, Long, Long> run() throws Throwable {
-            Map<String, Integer> map = (Map<String, Integer>) clazz.newInstance();
+            Map<String, Integer> map =
+                    (Map<String, Integer>) clazz.getDeclaredConstructor().newInstance();
             long b = 0, c = 0;
             int i = 0;
             LapTimer lt = new LapTimer();
@@ -274,9 +275,9 @@ public class AllTries {
 
                 private Object create(Object param)
                         throws InstantiationException, IllegalAccessException, IllegalArgumentException,
-                                InvocationTargetException {
+                                InvocationTargetException, NoSuchMethodException {
                     if (param instanceof Class) {
-                        return ((Class<?>) param).newInstance();
+                        return ((Class<?>) param).getDeclaredConstructor().newInstance();
                     } else if (param instanceof Class<?>[]) {
                         Class<?>[] params = (Class<?>[]) param;
                         Object[] args = new Object[params.length - 1];
@@ -302,15 +303,16 @@ public class AllTries {
 
                 private Pair<Trie, Long> buildSecondTrie(Trie firstTrie)
                         throws InstantiationException, IllegalAccessException, IllegalArgumentException,
-                                InvocationTargetException {
+                                InvocationTargetException, NoSuchMethodException {
                     Object[] args = new Object[1 + ctorParamClasses.length];
                     args[0] = firstTrie;
                     for (int i = 0; i < ctorParamClasses.length; i++) {
                         Object pc = ctorParamClasses[i];
                         if (pc instanceof Class) {
-                            args[i + 1] = ((Class<?>) pc).newInstance();
+                            args[i + 1] =
+                                    ((Class<?>) pc).getDeclaredConstructor().newInstance();
                         } else if (pc instanceof Class<?>[]) {
-                            args[i + 1] = create((Class<?>[]) pc);
+                            args[i + 1] = create(pc);
                         }
                     }
                     TrieFactory tf = trieFactories.get(secondTrieClass);
@@ -361,11 +363,13 @@ public class AllTries {
                 }
 
                 private Pair<Trie, Long> buildSecondTrie(Trie firstTrie)
-                        throws InstantiationException, IllegalAccessException {
+                        throws InstantiationException, IllegalAccessException, NoSuchMethodException,
+                                InvocationTargetException {
                     Object[] args = new Object[1 + ctorParamClasses.length];
                     args[0] = firstTrie;
                     for (int i = 0; i < ctorParamClasses.length; i++) {
-                        args[i + 1] = ctorParamClasses[i].newInstance();
+                        args[i + 1] =
+                                ctorParamClasses[i].getDeclaredConstructor().newInstance();
                     }
                     TrieFactory tf = trieFactories.get(secondTrieClass);
                     if (tf != null) {
@@ -407,10 +411,12 @@ public class AllTries {
             return Trio.create((Object) trie, tries.getSecond(), verifyTrie(trie));
         }
 
-        private Pair<Trie, Long> buildFirstTrie() throws InstantiationException, IllegalAccessException, IOException {
+        private Pair<Trie, Long> buildFirstTrie()
+                throws InstantiationException, IllegalAccessException, IOException, NoSuchMethodException,
+                        InvocationTargetException {
             Object[] params = new Object[ctorParamClasses.length];
             for (int i = 0; i < ctorParamClasses.length; i++) {
-                params[i] = ctorParamClasses[i].newInstance();
+                params[i] = ctorParamClasses[i].getDeclaredConstructor().newInstance();
             }
             for (Constructor<?> c : trieClass.getConstructors()) {
                 try {
@@ -487,11 +493,13 @@ public class AllTries {
                 }
 
                 private Pair<MapTrie, Long> buildSecondTrie(MapTrie firstTrie)
-                        throws InstantiationException, IllegalAccessException {
+                        throws InstantiationException, IllegalAccessException, NoSuchMethodException,
+                                InvocationTargetException {
                     Object[] args = new Object[1 + ctorParamClasses.length];
                     args[0] = firstTrie;
                     for (int i = 0; i < ctorParamClasses.length; i++) {
-                        args[i + 1] = ctorParamClasses[i].newInstance();
+                        args[i + 1] =
+                                ctorParamClasses[i].getDeclaredConstructor().newInstance();
                     }
                     for (Constructor<?> c : secondTrieClass.getConstructors()) {
                         try {
@@ -524,10 +532,11 @@ public class AllTries {
 
         @SuppressWarnings({"rawtypes", "unchecked"})
         private Pair<MapTrie, Long> buildFirstTrie()
-                throws InstantiationException, IllegalAccessException, IOException {
+                throws InstantiationException, IllegalAccessException, IOException, NoSuchMethodException,
+                        InvocationTargetException {
             Object[] params = new Object[ctorParamClasses.length];
             for (int i = 0; i < ctorParamClasses.length; i++) {
-                params[i] = ctorParamClasses[i].newInstance();
+                params[i] = ctorParamClasses[i].getDeclaredConstructor().newInstance();
             }
             for (Constructor<?> c : trieClass.getConstructors()) {
                 try {
