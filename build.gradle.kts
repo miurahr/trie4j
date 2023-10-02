@@ -2,8 +2,9 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.github.spotbugs") version "5.0.13"
-    id("io.github.gradle-nexus.publish-plugin") version "2.0.0-rc-1"
+    alias(libs.plugins.spotbugs)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.nexus.publish)
 }
 
 repositories {
@@ -134,5 +135,13 @@ spotbugs {
 tasks.withType<Javadoc> {
     setFailOnError(false)
     (options as StandardJavadocDocletOptions).addBooleanOption("Xdoclint:none", true)
-    (options as StandardJavadocDocletOptions).addStringOption("Xmaxwarns", "1")
+    (options as StandardJavadocDocletOptions).addStringOption("Xmaxwarns", "10")
+}
+
+spotless {
+    java {
+        target(listOf("src/main/java/**/*.java", "src/test/java/**/*.java"))
+        removeUnusedImports()
+        palantirJavaFormat()
+    }
 }
