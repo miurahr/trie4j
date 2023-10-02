@@ -7,20 +7,46 @@
 
 # Trie4J - various trie implementation for Java.
 
-Trie4J is the sort of collection of various trie implementation.
+This is a forked version of Trie4J!
 
-You can get the binary using Maven:
+Trie4j project looks stopping its maintainance after release 0.9.8.
+A project here is a foked project in order to maintain code base
+based on Java 11.
+
+## About
+
+Trie4J is a collection of various trie implementations.
+
+You can use the library when using Maven:
+
 ```xml
 <dependency>
-    <groupId>com.github.takawitter</groupId>
+    <groupId>tokyo.northside</groupId>
     <artifactId>trie4j</artifactId>
-    <version>0.9.8</version>
+    <version>0.9.9-SNAPSHOT</version>
 </dependency>
 ```
 
-or from [Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.takawitter%22%20AND%20a%3A%22trie4j%22)
+When using Gradle
 
-* Coming release: nothing planned.
+```groovy
+dependencies {
+    implementation('tokyo.northside:trie4j:0.9.9-SNAPSHOT')
+}
+```
+
+## Difference from version 0.9.8
+
+- Removal of deprecated UnsafeByteSuccinctBitVector and UnsafeDoubleArray class
+- Migrate to a Gradle build system
+- Change folder structure
+- Code style changes by spotless
+- Checked by SpotBugs and changes to fix the warnings
+- Fix unrecommended/deprecated java syntaxes.
+- and more changes.
+
+## Release history
+
 * 2018/1/24: [0.9.8](https://github.com/takawitter/trie4j/releases/tag/0.9.8) released.
 * 2017/10/22: [0.9.7](https://github.com/takawitter/trie4j/releases/tag/0.9.7) released.
 * 2017/7/20: [0.9.6](https://github.com/takawitter/trie4j/releases/tag/0.9.6) released.
@@ -29,7 +55,11 @@ or from [Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22
 * 2016/5/28: [0.9.3](https://github.com/takawitter/trie4j/releases/tag/0.9.3) released.
 
 ---
+
+# From an original readme document
+
 ### Performance comparison:
+
 with 1.27 million words and 10.04 million chars contained in jawiki-20120220-all-titles-in-ns0.gz .
 <br/>on MacOS X(10.7), Core i7 2.5GHz, Java 7 Update 21.  2013-5-14.
 <table>
@@ -102,6 +132,7 @@ with <a href="https://github.com/takawitter/trie4j/blob/master/trie4j/src/org/tr
 ---
 
 ### Sample codes:
+
 ```java
 import org.trie4j.doublearray.DoubleArray;
 import org.trie4j.louds.TailLOUDSTrie;
