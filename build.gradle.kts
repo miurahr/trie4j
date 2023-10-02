@@ -9,14 +9,12 @@ plugins {
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
-    implementation("asm:asm-tree:3.0")
-    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
-    implementation("oro:oro:2.0.8")
-    testImplementation("junit:junit:4.13.1")
+    implementation(libs.asm.tree)
+    implementation(libs.oro)
+    testImplementation(libs.junit4)
 }
 
 group = "com.github.takawitter"

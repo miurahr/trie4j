@@ -61,6 +61,8 @@ xjc = "2.3.4"
 tipoftheday = "0.4.2"
 sphinx = "1.0.4"
 launch4j = "3.0.3"
+asm_tree = "3.0"
+oro = "2.0.8"
 
 [libraries]
 slf4j-api = {group = "org.slf4j", name = "slf4j-api",  version.ref = "slf4j"}
@@ -155,6 +157,8 @@ omegat-jmyspell-core = {group = "org.omegat", name = "jmyspell-core", version.re
 dumont-hunspell = {group = "com.gitlab.dumonts", name = "hunspell", version.ref = "hunspell"}
 jaxb-xjc = {group = "org.grassfish.jaxb", name = "jaxb-xjc", version.ref = "xjc"}
 tipoftheday = {group = "tokyo.northside", name = "tipoftheday", version.ref = "tipoftheday"}
+asm-tree = {group = "asm", name = "asm-tree", version.ref = "asm_tree"}
+oro = {group = "oro", name = "oro", version.ref = "oro"}
 
 [bundles]
 groovy = ["groovy-jsr223", "groovy-dateutil", "groovy-json", "groovy-xml", "groovy-swing", "groovy-templates", "ivy"]
