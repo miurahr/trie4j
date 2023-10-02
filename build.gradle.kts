@@ -17,7 +17,7 @@ dependencies {
     testImplementation(libs.junit4)
 }
 
-group = "com.github.takawitter"
+group = "tokyo.northside"
 version = "0.9.9-SNAPSHOT"
 description = "Trie4J"
 
