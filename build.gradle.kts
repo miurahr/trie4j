@@ -20,7 +20,7 @@ dependencies {
 }
 
 group = "com.github.takawitter"
-version = "0.9.8"
+version = "0.9.9-SNAPSHOT"
 description = "Trie4J"
 
 publishing {
