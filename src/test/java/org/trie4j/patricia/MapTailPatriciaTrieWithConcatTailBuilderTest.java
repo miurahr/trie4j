@@ -19,9 +19,9 @@ import org.trie4j.AbstractMutableMapTrieTest;
 import org.trie4j.tail.builder.ConcatTailBuilder;
 
 public class MapTailPatriciaTrieWithConcatTailBuilderTest
-extends AbstractMutableMapTrieTest<MapTailPatriciaTrie<Integer>>{
-	@Override
-	protected MapTailPatriciaTrie<Integer> createFirstTrie() {
-		return new MapTailPatriciaTrie<Integer>(new ConcatTailBuilder());
-	}
+        extends AbstractMutableMapTrieTest<MapTailPatriciaTrie<Integer>> {
+    @Override
+    protected MapTailPatriciaTrie<Integer> createFirstTrie() {
+        return new MapTailPatriciaTrie<Integer>(new ConcatTailBuilder());
+    }
 }

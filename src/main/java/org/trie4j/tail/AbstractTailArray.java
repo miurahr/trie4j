@@ -15,9 +15,7 @@
  */
 package org.trie4j.tail;
 
-
-abstract class AbstractTailArray
-{}
+abstract class AbstractTailArray {}
 /*implements Externalizable, TailArrayBuilder{
 
 	protected abstract TailBuilder newTailBuilder(StringBuilder tails);
@@ -70,7 +68,7 @@ abstract class AbstractTailArray
 	public TailCharIterator newIterator(int offset) {
 		return new TailCharIterator(tails, offset);
 	}
-	
+
 	@Override
 	public int getIteratorOffset(int index) {
 		return this.index.get(index);

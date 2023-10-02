@@ -22,12 +22,10 @@ import org.trie4j.louds.bvtree.LOUDSBvTree;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
 public class LongsConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie orig) {
-		return new TailLOUDSTrie(
-				orig,
-				new LOUDSBvTree(new LongsConstantTimeSelect0SuccinctBitVector()),
-				new ConcatTailArrayBuilder());
-	}
+        extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie orig) {
+        return new TailLOUDSTrie(
+                orig, new LOUDSBvTree(new LongsConstantTimeSelect0SuccinctBitVector()), new ConcatTailArrayBuilder());
+    }
 }

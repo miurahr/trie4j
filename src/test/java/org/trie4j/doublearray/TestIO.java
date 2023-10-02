@@ -21,92 +21,91 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-
 import org.junit.Test;
 import org.trie4j.Trie;
 import org.trie4j.test.LapTimer;
 import org.trie4j.test.WikipediaTitles;
 
 public class TestIO {
-	private static final int maxCount = 2000000;
-	
-	@Test
-	public void testSave() throws Exception{
-		System.out.println("--- building patricia trie ---");
-		Trie trie = new org.trie4j.patricia.TailPatriciaTrie();
-		int c = 0;
-		LapTimer t1 = new LapTimer();
-		for(String word : new WikipediaTitles()){
-			trie.insert(word);
-			c++;
-			if(c == maxCount) break;
-		}
-		System.out.println("done in " + t1.lapMillis() + " millis.");
-		System.out.println(c + "entries in ja wikipedia titles.");
+    private static final int maxCount = 2000000;
 
-		System.out.println("-- building double array.");
-		t1.reset();
-		TailDoubleArray da = new TailDoubleArray(trie);
-		trie = null;
-		System.out.println("done in " + t1.lapMillis() + " millis.");
+    @Test
+    public void testSave() throws Exception {
+        System.out.println("--- building patricia trie ---");
+        Trie trie = new org.trie4j.patricia.TailPatriciaTrie();
+        int c = 0;
+        LapTimer t1 = new LapTimer();
+        for (String word : new WikipediaTitles()) {
+            trie.insert(word);
+            c++;
+            if (c == maxCount) break;
+        }
+        System.out.println("done in " + t1.lapMillis() + " millis.");
+        System.out.println(c + "entries in ja wikipedia titles.");
 
-		OutputStream os = new GZIPOutputStream(new FileOutputStream("da.dat"));
-		try{
-			System.out.println("-- saving double array.");
-			t1.reset();
-			da.save(os);
-			System.out.println("done in " + t1.lapMillis() + " millis.");
-			da.dump(new PrintWriter(System.out));
-		} finally{
-			os.close();
-		}
-	}
+        System.out.println("-- building double array.");
+        t1.reset();
+        TailDoubleArray da = new TailDoubleArray(trie);
+        trie = null;
+        System.out.println("done in " + t1.lapMillis() + " millis.");
 
-	@Test
-	public void testLoad() throws Exception{
-		TailDoubleArray da = new TailDoubleArray();
-		LapTimer t = new LapTimer();
-		System.out.println("-- loading double array.");
-		da.load(new GZIPInputStream(new FileInputStream("da.dat")));
-		System.out.println("done in " + t.lapMillis() + " millis.");
-		da.dump(new PrintWriter(System.out));
-		verify(da);
-		System.out.println("---- common prefix search ----");
-		System.out.println("-- for 東京国際フォーラム");
-		for(String s : da.commonPrefixSearch("東京国際フォーラム")){
-			System.out.println(s);
-		}
-		System.out.println("-- for 大阪城ホール");
-		for(String s : da.commonPrefixSearch("大阪城ホール")){
-			System.out.println(s);
-		}
-		System.out.println("---- predictive search ----");
-		System.out.println("-- for 大阪城");
-		for(String s : da.predictiveSearch("大阪城")){
-			System.out.println(s);
-		}
-		Thread.sleep(10000);
-		da.contains("hello");
-	}
+        OutputStream os = new GZIPOutputStream(new FileOutputStream("da.dat"));
+        try {
+            System.out.println("-- saving double array.");
+            t1.reset();
+            da.save(os);
+            System.out.println("done in " + t1.lapMillis() + " millis.");
+            da.dump(new PrintWriter(System.out));
+        } finally {
+            os.close();
+        }
+    }
 
-	private static void verify(Trie da) throws Exception{
-		System.out.println("verifying double array...");
-		int c = 0;
-		int sum = 0;
-		LapTimer t1 = new LapTimer();
-		LapTimer t = new LapTimer();
-		for(String word : new WikipediaTitles()){
-			if(c == maxCount) break;
-			t.reset();
-			boolean found = da.contains(word);
-			sum += t.lapMillis();
-			c++;
-			if(!found){
-				System.out.println("verification failed.  trie not contains " + c + " th word: [" + word + "]");
-				break;
-			}
-		}
-		System.out.println("done " + c + "words in " + t1.lapMillis() + " millis.");
-		System.out.println("contains time: " + sum + " millis.");
-	}
+    @Test
+    public void testLoad() throws Exception {
+        TailDoubleArray da = new TailDoubleArray();
+        LapTimer t = new LapTimer();
+        System.out.println("-- loading double array.");
+        da.load(new GZIPInputStream(new FileInputStream("da.dat")));
+        System.out.println("done in " + t.lapMillis() + " millis.");
+        da.dump(new PrintWriter(System.out));
+        verify(da);
+        System.out.println("---- common prefix search ----");
+        System.out.println("-- for 東京国際フォーラム");
+        for (String s : da.commonPrefixSearch("東京国際フォーラム")) {
+            System.out.println(s);
+        }
+        System.out.println("-- for 大阪城ホール");
+        for (String s : da.commonPrefixSearch("大阪城ホール")) {
+            System.out.println(s);
+        }
+        System.out.println("---- predictive search ----");
+        System.out.println("-- for 大阪城");
+        for (String s : da.predictiveSearch("大阪城")) {
+            System.out.println(s);
+        }
+        Thread.sleep(10000);
+        da.contains("hello");
+    }
+
+    private static void verify(Trie da) throws Exception {
+        System.out.println("verifying double array...");
+        int c = 0;
+        int sum = 0;
+        LapTimer t1 = new LapTimer();
+        LapTimer t = new LapTimer();
+        for (String word : new WikipediaTitles()) {
+            if (c == maxCount) break;
+            t.reset();
+            boolean found = da.contains(word);
+            sum += t.lapMillis();
+            c++;
+            if (!found) {
+                System.out.println("verification failed.  trie not contains " + c + " th word: [" + word + "]");
+                break;
+            }
+        }
+        System.out.println("done " + c + "words in " + t1.lapMillis() + " millis.");
+        System.out.println("contains time: " + sum + " millis.");
+    }
 }

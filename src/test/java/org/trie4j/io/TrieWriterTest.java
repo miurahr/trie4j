@@ -17,7 +17,6 @@ package org.trie4j.io;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-
 import org.junit.Test;
 import org.trie4j.Trie;
 import org.trie4j.louds.TailLOUDSTrie;
@@ -28,25 +27,25 @@ import org.trie4j.test.LapTimer;
 import org.trie4j.test.WikipediaTitles;
 
 public class TrieWriterTest {
-	@Test
-	public void test() throws Exception{
-		LapTimer lt = new LapTimer();
-		PatriciaTrie origTrie = new PatriciaTrie();
-		new WikipediaTitles().insertTo(origTrie);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		TrieWriter tw = new TrieWriter(baos);
-		Trie trie = new TailLOUDSTrie(origTrie, new LOUDSPPBvTree(origTrie.nodeSize()),
-				new SuffixTrieDenseTailArrayBuilder());
-		lt.reset();
-		tw.write(trie);
-		tw.flush();
-		lt.lapMillis("trie saved.");
-		System.out.println(baos.size() + " bytes");
-		TrieReader tr = new TrieReader(new ByteArrayInputStream(baos.toByteArray()));
-		lt.reset();
-		Trie trie2 = tr.read();
-		lt.lapMillis("trie loaded.");
-		long d = new WikipediaTitles().assertAllContains(trie2);
-		System.out.println("[" + d + "ms]: verified");
-	}
+    @Test
+    public void test() throws Exception {
+        LapTimer lt = new LapTimer();
+        PatriciaTrie origTrie = new PatriciaTrie();
+        new WikipediaTitles().insertTo(origTrie);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        TrieWriter tw = new TrieWriter(baos);
+        Trie trie = new TailLOUDSTrie(
+                origTrie, new LOUDSPPBvTree(origTrie.nodeSize()), new SuffixTrieDenseTailArrayBuilder());
+        lt.reset();
+        tw.write(trie);
+        tw.flush();
+        lt.lapMillis("trie saved.");
+        System.out.println(baos.size() + " bytes");
+        TrieReader tr = new TrieReader(new ByteArrayInputStream(baos.toByteArray()));
+        lt.reset();
+        Trie trie2 = tr.read();
+        lt.lapMillis("trie loaded.");
+        long d = new WikipediaTitles().assertAllContains(trie2);
+        System.out.println("[" + d + "ms]: verified");
+    }
 }

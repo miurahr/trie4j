@@ -22,51 +22,51 @@ import java.util.Map;
  * @author Takao Nakaguchi
  * @param <T> type of the value
  */
-public interface MapTrie<T> extends Trie{
-	/**
-	 * retuns root node.
-	 * @return root node.
-	 */
-	MapNode<T> getRoot();
+public interface MapTrie<T> extends Trie {
+    /**
+     * retuns root node.
+     * @return root node.
+     */
+    MapNode<T> getRoot();
 
-	/**
-	 * gets the value associated with word.
-	 * @param word word
-	 * @return value. null if word not inserted or inserted with null value.
-	 */
-	T get(String word);
+    /**
+     * gets the value associated with word.
+     * @param word word
+     * @return value. null if word not inserted or inserted with null value.
+     */
+    T get(String word);
 
-	/**
-	 * insert a word with value.
-	 * @param word word to insert.
-	 * @param value the value associated with word.
-	 * @return old value for word.
-	 */
-	T insert(String word, T value);
+    /**
+     * insert a word with value.
+     * @param word word to insert.
+     * @param value the value associated with word.
+     * @return old value for word.
+     */
+    T insert(String word, T value);
 
-	/**
-	 * Put a value associated with existing word.
-	 * @param word word to be associated with value. word must be exist in trie.
-	 * @param value value
-	 * @return old value for word.
-	 */
-	T put(String word, T value);
+    /**
+     * Put a value associated with existing word.
+     * @param word word to be associated with value. word must be exist in trie.
+     * @param value value
+     * @return old value for word.
+     */
+    T put(String word, T value);
 
-	/**
-	 * search trie for words contained in query.
-	 * If query is "helloworld" and trie contains "he", "hello" and "world",
-	 * the words "he" and "hello" will be found.
-	 * @param query query
-	 * @return Iterable object which iterates found words.
-	 */
-	Iterable<Map.Entry<String, T>> commonPrefixSearchEntries(String query);
+    /**
+     * search trie for words contained in query.
+     * If query is "helloworld" and trie contains "he", "hello" and "world",
+     * the words "he" and "hello" will be found.
+     * @param query query
+     * @return Iterable object which iterates found words.
+     */
+    Iterable<Map.Entry<String, T>> commonPrefixSearchEntries(String query);
 
-	/**
-	 * search trie for words starting prefix.
-	 * If prefix is "he" and trie contains "he", "hello" and "world",
-	 * the words "he" and "hello" will be found.
-	 * @param prefix prefix
-	 * @return Iterable object which iterates found words.
-	 */
-	Iterable<Map.Entry<String, T>> predictiveSearchEntries(String prefix);
+    /**
+     * search trie for words starting prefix.
+     * If prefix is "he" and trie contains "he", "hello" and "world",
+     * the words "he" and "hello" will be found.
+     * @param prefix prefix
+     * @return Iterable object which iterates found words.
+     */
+    Iterable<Map.Entry<String, T>> predictiveSearchEntries(String prefix);
 }

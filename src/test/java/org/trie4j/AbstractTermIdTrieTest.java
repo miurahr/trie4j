@@ -17,24 +17,22 @@ package org.trie4j;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractTermIdTrieTest<T extends TermIdTrie>
-extends AbstractImmutableTrieTest<T>{
-	@Test
-	public void test_termId() throws Exception{
-		String[] words = {"hello", "world", "apple", "banana", "strawbelly"};
-		TermIdTrie t = trieWithWords(words);
-		Set<Integer> ids = new HashSet<Integer>();
-		for(String w : words){
-			ids.add(t.getTermId(w));
-		}
-		Assert.assertEquals(words.length, ids.size());
-		for(String w : words){
-			ids.remove(t.getTermId(w));
-		}
-		Assert.assertEquals(0, ids.size());
-	}
+public abstract class AbstractTermIdTrieTest<T extends TermIdTrie> extends AbstractImmutableTrieTest<T> {
+    @Test
+    public void test_termId() throws Exception {
+        String[] words = {"hello", "world", "apple", "banana", "strawbelly"};
+        TermIdTrie t = trieWithWords(words);
+        Set<Integer> ids = new HashSet<Integer>();
+        for (String w : words) {
+            ids.add(t.getTermId(w));
+        }
+        Assert.assertEquals(words.length, ids.size());
+        for (String w : words) {
+            ids.remove(t.getTermId(w));
+        }
+        Assert.assertEquals(0, ids.size());
+    }
 }

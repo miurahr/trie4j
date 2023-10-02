@@ -18,7 +18,6 @@ package org.trie4j.doublearray;
 import java.io.Externalizable;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.trie4j.AbstractTermIdMapTrie;
 import org.trie4j.MapNode;
 import org.trie4j.MapTrie;
@@ -30,25 +29,22 @@ import org.trie4j.doublearray.DoubleArray.TermNodeListener;
  *
  * @param <T>
  */
-public class MapDoubleArray<T>
-extends AbstractTermIdMapTrie<T>
-implements Externalizable, MapTrie<T>{
-	public MapDoubleArray() {
-	}
+public class MapDoubleArray<T> extends AbstractTermIdMapTrie<T> implements Externalizable, MapTrie<T> {
+    public MapDoubleArray() {}
 
-	public MapDoubleArray(MapTrie<T> trie){
-		this(trie, trie.size() * 2);
-	}
+    public MapDoubleArray(MapTrie<T> trie) {
+        this(trie, trie.size() * 2);
+    }
 
-	public MapDoubleArray(MapTrie<T> trie, int arraySize){
-		final Map<Integer, Object> termValues = new TreeMap<Integer, Object>();
-		setTrie(new DoubleArray(trie, arraySize, new TermNodeListener(){
-			@Override
-			@SuppressWarnings("unchecked")
-			public void listen(Node node, int nodeIndex) {
-				termValues.put(nodeIndex, ((MapNode<T>)node).getValue());
-			}
-		}));
-		setValues(termValues.values().toArray());
-	}
+    public MapDoubleArray(MapTrie<T> trie, int arraySize) {
+        final Map<Integer, Object> termValues = new TreeMap<Integer, Object>();
+        setTrie(new DoubleArray(trie, arraySize, new TermNodeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public void listen(Node node, int nodeIndex) {
+                termValues.put(nodeIndex, ((MapNode<T>) node).getValue());
+            }
+        }));
+        setValues(termValues.values().toArray());
+    }
 }

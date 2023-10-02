@@ -22,10 +22,15 @@ import org.trie4j.util.BitSet;
  * @author Takao Nakaguchi
  */
 public interface BitVector extends BitSet {
-	int size();
-	void trimToSize();
-	boolean isZero(int pos);
-	boolean isOne(int pos);
-	void append0();
-	void append1();
+    int size();
+
+    void trimToSize();
+
+    boolean isZero(int pos);
+
+    boolean isOne(int pos);
+
+    void append0();
+
+    void append1();
 }

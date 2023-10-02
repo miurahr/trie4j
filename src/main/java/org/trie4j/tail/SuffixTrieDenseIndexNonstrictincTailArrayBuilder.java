@@ -17,7 +17,6 @@ package org.trie4j.tail;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import org.trie4j.tail.builder.SuffixTrieTailBuilder;
 import org.trie4j.tail.builder.TailBuilder;
 import org.trie4j.tail.index.DenseArrayTailIndex;
@@ -26,42 +25,37 @@ import org.trie4j.util.FastBitSet;
 
 public class SuffixTrieDenseIndexNonstrictincTailArrayBuilder implements TailArrayBuilder {
 
-	@Override
-	public void append(int nodeId, CharSequence letters, int offset, int len) {
-		int index = tailBuilder.insert(letters, offset, len);
-		tailBs.set(nodeId);
-		indexes.put(nodeId, index);
-	}
+    @Override
+    public void append(int nodeId, CharSequence letters, int offset, int len) {
+        int index = tailBuilder.insert(letters, offset, len);
+        tailBs.set(nodeId);
+        indexes.put(nodeId, index);
+    }
 
-	@Override
-	public void append(int nodeId, char[] letters, int offset, int len) {
-		int index = tailBuilder.insert(letters, offset, len);
-		tailBs.set(nodeId);
-		indexes.put(nodeId, index);
-	}
+    @Override
+    public void append(int nodeId, char[] letters, int offset, int len) {
+        int index = tailBuilder.insert(letters, offset, len);
+        tailBs.set(nodeId);
+        indexes.put(nodeId, index);
+    }
 
-	@Override
-	public void appendEmpty(int nodeId) {
-		tailBs.unsetIfLE(nodeId);
-	}
+    @Override
+    public void appendEmpty(int nodeId) {
+        tailBs.unsetIfLE(nodeId);
+    }
 
-	@Override
-	public void trimToSize() {
-	}
+    @Override
+    public void trimToSize() {}
 
-	@Override
-	public TailArray build() {
-		return new DefaultTailArray(
-				tailBuilder.getTails(),
-				new DenseArrayTailIndex(
-						ArrayUtil.unbox(indexes.values().toArray(new Integer[]{})),
-						tailBs.getBytes(),
-						tailBs.size()
-						)
-				);
-	}
+    @Override
+    public TailArray build() {
+        return new DefaultTailArray(
+                tailBuilder.getTails(),
+                new DenseArrayTailIndex(
+                        ArrayUtil.unbox(indexes.values().toArray(new Integer[] {})), tailBs.getBytes(), tailBs.size()));
+    }
 
-	private TailBuilder tailBuilder = new SuffixTrieTailBuilder();
-	private FastBitSet tailBs = new FastBitSet();
-	private SortedMap<Integer, Integer> indexes = new TreeMap<Integer, Integer>();
+    private TailBuilder tailBuilder = new SuffixTrieTailBuilder();
+    private FastBitSet tailBs = new FastBitSet();
+    private SortedMap<Integer, Integer> indexes = new TreeMap<Integer, Integer>();
 }

@@ -19,14 +19,14 @@ import org.trie4j.AbstractTrieTest;
 import org.trie4j.tail.builder.ConcatTailBuilder;
 
 public class TailPatriciaTrieWithConcatTailBuilderRebuildTrieTest
-extends AbstractTrieTest<TailPatriciaTrie, TailPatriciaTrie> {
-	@Override
-	protected TailPatriciaTrie createFirstTrie() {
-		return new TailPatriciaTrie(new ConcatTailBuilder());
-	}
+        extends AbstractTrieTest<TailPatriciaTrie, TailPatriciaTrie> {
+    @Override
+    protected TailPatriciaTrie createFirstTrie() {
+        return new TailPatriciaTrie(new ConcatTailBuilder());
+    }
 
-	@Override
-	protected TailPatriciaTrie buildSecondTrie(TailPatriciaTrie firstTrie) {
-		return new TailPatriciaTrie(firstTrie, new ConcatTailBuilder());
-	}
+    @Override
+    protected TailPatriciaTrie buildSecondTrie(TailPatriciaTrie firstTrie) {
+        return new TailPatriciaTrie(firstTrie, new ConcatTailBuilder());
+    }
 }

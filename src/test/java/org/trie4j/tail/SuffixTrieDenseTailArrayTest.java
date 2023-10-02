@@ -19,19 +19,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SuffixTrieDenseTailArrayTest {
-	@Test
-	public void test_tailtrie_1() throws Exception{
-		TailArrayBuilder tab = new SuffixTrieDenseTailArrayBuilder(0);
-		tab.append(0, "hello", 0, 5);
-		tab.appendEmpty(1);
-		tab.appendEmpty(2);
-		tab.append(3, "llo", 0, 3);
-		tab.appendEmpty(4);
-		TailArray ta = tab.build();
-		TailCharIterator it = ta.newIterator();
-		it.setOffset(ta.getIteratorOffset(0));
-		Assert.assertEquals("hello", TailUtil.readAll(it));
-		it.setOffset(ta.getIteratorOffset(3));
-		Assert.assertEquals("llo", TailUtil.readAll(it));
-	}
+    @Test
+    public void test_tailtrie_1() throws Exception {
+        TailArrayBuilder tab = new SuffixTrieDenseTailArrayBuilder(0);
+        tab.append(0, "hello", 0, 5);
+        tab.appendEmpty(1);
+        tab.appendEmpty(2);
+        tab.append(3, "llo", 0, 3);
+        tab.appendEmpty(4);
+        TailArray ta = tab.build();
+        TailCharIterator it = ta.newIterator();
+        it.setOffset(ta.getIteratorOffset(0));
+        Assert.assertEquals("hello", TailUtil.readAll(it));
+        it.setOffset(ta.getIteratorOffset(3));
+        Assert.assertEquals("llo", TailUtil.readAll(it));
+    }
 }

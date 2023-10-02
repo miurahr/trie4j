@@ -18,87 +18,84 @@ package org.trie4j.util;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class FastBitSet implements Serializable, BitSet{
-	public FastBitSet() {
-	}
+public class FastBitSet implements Serializable, BitSet {
+    public FastBitSet() {}
 
-	public FastBitSet(int bitSize){
-		bytes = new byte[bitSize / 8 + 1];
-	}
+    public FastBitSet(int bitSize) {
+        bytes = new byte[bitSize / 8 + 1];
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder b = new StringBuilder();
-		int n = Math.min(size, 32);
-		for(int i = 0; i < n; i++){
-			b.append((bytes[(i / 8)] & (0x80 >> (i % 8))) != 0 ? "1" : "0");
-		}
-		return b.toString();
-	}
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        int n = Math.min(size, 32);
+        for (int i = 0; i < n; i++) {
+            b.append((bytes[(i / 8)] & (0x80 >> (i % 8))) != 0 ? "1" : "0");
+        }
+        return b.toString();
+    }
 
-	@Override
-	public int size(){
-		return size;
-	}
+    @Override
+    public int size() {
+        return size;
+    }
 
-	public byte[] getBytes(){
-		return bytes;
-	}
+    public byte[] getBytes() {
+        return bytes;
+    }
 
-	@Override
-	public boolean get(int index){
-		return (bytes[index / 8] & (0x80 >> (index % 8))) != 0;
-	}
+    @Override
+    public boolean get(int index) {
+        return (bytes[index / 8] & (0x80 >> (index % 8))) != 0;
+    }
 
-	public void set(int index){
-		if(size <= index){
-			if(index / 8 >= bytes.length){
-				extend(index);
-			}
-			size = index + 1;
-		}
-		bytes[index / 8] |= 0x80 >> (index % 8);
-	}
+    public void set(int index) {
+        if (size <= index) {
+            if (index / 8 >= bytes.length) {
+                extend(index);
+            }
+            size = index + 1;
+        }
+        bytes[index / 8] |= 0x80 >> (index % 8);
+    }
 
-	public void unset(int index){
-		if(size <= index){
-			if(index / 8 >= bytes.length){
-				extend(index);
-			}
-			size = index + 1;
-		}
-		bytes[index / 8] &= ~(0x80 >> (index % 8));
-	}
+    public void unset(int index) {
+        if (size <= index) {
+            if (index / 8 >= bytes.length) {
+                extend(index);
+            }
+            size = index + 1;
+        }
+        bytes[index / 8] &= ~(0x80 >> (index % 8));
+    }
 
-	public void unsetIfLE(int index){
-		if(size <= index){
-			if(index / 8 >= bytes.length){
-				extend(index);
-			}
-			size = index + 1;
-		}
-	}
+    public void unsetIfLE(int index) {
+        if (size <= index) {
+            if (index / 8 >= bytes.length) {
+                extend(index);
+            }
+            size = index + 1;
+        }
+    }
 
-	public void ensureCapacity(int index){
-		if((index / 8) >= bytes.length){
-			extend(index);
-		}
-	}
+    public void ensureCapacity(int index) {
+        if ((index / 8) >= bytes.length) {
+            extend(index);
+        }
+    }
 
-	public void trimToSize(){
-		int sz = size / 8 + 1;
-		if(bytes.length > sz){
-			bytes = Arrays.copyOf(bytes, sz);
-		}
-	}
+    public void trimToSize() {
+        int sz = size / 8 + 1;
+        if (bytes.length > sz) {
+            bytes = Arrays.copyOf(bytes, sz);
+        }
+    }
 
-	private void extend(int index){
-		bytes = Arrays.copyOf(bytes,
-				Math.max(index / 8 + 1, (int)(bytes.length * 1.5))
-				);
-	}
+    private void extend(int index) {
+        bytes = Arrays.copyOf(bytes, Math.max(index / 8 + 1, (int) (bytes.length * 1.5)));
+    }
 
-	private int size;
-	private byte[] bytes = {};
-	private static final long serialVersionUID = -3346250300546707823L;
+    private int size;
+    private byte[] bytes = {};
+    private static final long serialVersionUID = -3346250300546707823L;
 }

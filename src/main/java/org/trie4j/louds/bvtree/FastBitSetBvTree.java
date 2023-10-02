@@ -18,38 +18,37 @@ package org.trie4j.louds.bvtree;
 import org.trie4j.util.FastBitSet;
 import org.trie4j.util.Range;
 
-public class FastBitSetBvTree implements BvTree{
-	public FastBitSetBvTree(int initialCapacity) {
-		bs = new FastBitSet(initialCapacity);
-	}
+public class FastBitSetBvTree implements BvTree {
+    public FastBitSetBvTree(int initialCapacity) {
+        bs = new FastBitSet(initialCapacity);
+    }
 
-	public int getSize() {
-		return size;
-	}
+    public int getSize() {
+        return size;
+    }
 
-	public byte[] getBytes(){
-		return bs.getBytes();
-	}
+    public byte[] getBytes() {
+        return bs.getBytes();
+    }
 
-	@Override
-	public void appendChild() {
-		bs.set(size++);
-	}
+    @Override
+    public void appendChild() {
+        bs.set(size++);
+    }
 
-	@Override
-	public void appendSelf() {
-		bs.ensureCapacity(size++);
-	}
+    @Override
+    public void appendSelf() {
+        bs.ensureCapacity(size++);
+    }
 
-	@Override
-	public void getChildNodeIds(int selfNodeId, Range range) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void getChildNodeIds(int selfNodeId, Range range) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public void trimToSize() {
-	}
+    @Override
+    public void trimToSize() {}
 
-	private FastBitSet bs;
-	private int size;
+    private FastBitSet bs;
+    private int size;
 }

@@ -20,9 +20,9 @@ import org.trie4j.Trie;
 import org.trie4j.tail.SuffixTrieDenseIndexNonstrictincTailArrayBuilder;
 
 public class TailDoubleArrayWithSuffixTrieDenseIndexTailArrayBuilderWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie trie) {
-		return new TailDoubleArray(trie, new SuffixTrieDenseIndexNonstrictincTailArrayBuilder());
-	}
+        extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie trie) {
+        return new TailDoubleArray(trie, new SuffixTrieDenseIndexNonstrictincTailArrayBuilder());
+    }
 }

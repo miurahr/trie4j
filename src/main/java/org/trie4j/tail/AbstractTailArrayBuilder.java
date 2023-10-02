@@ -19,76 +19,74 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import org.trie4j.tail.builder.TailBuilder;
 import org.trie4j.tail.index.TailIndexBuilder;
 
-public abstract class AbstractTailArrayBuilder
-implements Externalizable, TailArrayBuilder{
-	protected abstract TailBuilder newTailBuilder(StringBuilder tails);
-	protected abstract TailIndexBuilder newTailIndexBuilder(int initialCapacity);
+public abstract class AbstractTailArrayBuilder implements Externalizable, TailArrayBuilder {
+    protected abstract TailBuilder newTailBuilder(StringBuilder tails);
 
-	public AbstractTailArrayBuilder(){
-		this(1024);
-	}
+    protected abstract TailIndexBuilder newTailIndexBuilder(int initialCapacity);
 
-	public AbstractTailArrayBuilder(int initialCapacity){
-		builder = newTailBuilder(tails);
-		indexBuilder = newTailIndexBuilder(initialCapacity);
-	}
+    public AbstractTailArrayBuilder() {
+        this(1024);
+    }
 
-	@Override
-	public void append(int nodeId, CharSequence letters, int offset, int len) {
-		int ret = builder.insert(letters, offset, len);
-		indexBuilder.add(nodeId, ret, tails.length());
-	}
+    public AbstractTailArrayBuilder(int initialCapacity) {
+        builder = newTailBuilder(tails);
+        indexBuilder = newTailIndexBuilder(initialCapacity);
+    }
 
-	@Override
-	public void append(int nodeId, char[] letters, int offset, int len) {
-		int ret = builder.insert(letters, offset, len);
-		indexBuilder.add(nodeId, ret, tails.length());
-	}
+    @Override
+    public void append(int nodeId, CharSequence letters, int offset, int len) {
+        int ret = builder.insert(letters, offset, len);
+        indexBuilder.add(nodeId, ret, tails.length());
+    }
 
-	@Override
-	public void appendEmpty(int nodeId) {
-		indexBuilder.addEmpty(nodeId);
-	}
+    @Override
+    public void append(int nodeId, char[] letters, int offset, int len) {
+        int ret = builder.insert(letters, offset, len);
+        indexBuilder.add(nodeId, ret, tails.length());
+    }
 
-	@Override
-	public void trimToSize() {
-		tails.trimToSize();
-		indexBuilder.trimToSize();
-	}
+    @Override
+    public void appendEmpty(int nodeId) {
+        indexBuilder.addEmpty(nodeId);
+    }
 
-	@Override
-	public TailArray build() {
-		tails.trimToSize();
-		return new DefaultTailArray(tails, indexBuilder.build());
-	}
+    @Override
+    public void trimToSize() {
+        tails.trimToSize();
+        indexBuilder.trimToSize();
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws IOException, ClassNotFoundException {
-		int n = in.readInt();
-		tails = new StringBuilder(n);
-		for(int i = 0; i < n; i++){
-			tails.append(in.readChar());
-		}
-		builder = newTailBuilder(tails);
-		indexBuilder = (TailIndexBuilder)in.readObject();
-	}
+    @Override
+    public TailArray build() {
+        tails.trimToSize();
+        return new DefaultTailArray(tails, indexBuilder.build());
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		int n = tails.length();
-		out.writeInt(n);
-		for(int i = 0; i < n; i++){
-			out.writeChar(tails.charAt(i));
-		}
-		out.writeObject(indexBuilder);
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        int n = in.readInt();
+        tails = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            tails.append(in.readChar());
+        }
+        builder = newTailBuilder(tails);
+        indexBuilder = (TailIndexBuilder) in.readObject();
+    }
 
-	private StringBuilder tails = new StringBuilder();
-	private TailBuilder builder;
-	private TailIndexBuilder indexBuilder;
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        int n = tails.length();
+        out.writeInt(n);
+        for (int i = 0; i < n; i++) {
+            out.writeChar(tails.charAt(i));
+        }
+        out.writeObject(indexBuilder);
+    }
+
+    private StringBuilder tails = new StringBuilder();
+    private TailBuilder builder;
+    private TailIndexBuilder indexBuilder;
 }

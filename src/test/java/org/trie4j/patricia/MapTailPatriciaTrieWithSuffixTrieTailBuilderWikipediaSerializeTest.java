@@ -17,13 +17,12 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractMapTrieWikipediaSerializeTest;
 import org.trie4j.MapTrie;
-import org.trie4j.patricia.MapTailPatriciaTrie;
 import org.trie4j.tail.builder.SuffixTrieTailBuilder;
 
 public class MapTailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest
-extends AbstractMapTrieWikipediaSerializeTest{
-	@Override
-	protected MapTrie<Integer> newTrie() {
-		return new MapTailPatriciaTrie<Integer>(new SuffixTrieTailBuilder());
-	}
+        extends AbstractMapTrieWikipediaSerializeTest {
+    @Override
+    protected MapTrie<Integer> newTrie() {
+        return new MapTailPatriciaTrie<Integer>(new SuffixTrieTailBuilder());
+    }
 }

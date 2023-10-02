@@ -18,29 +18,30 @@ package org.trie4j;
 import org.trie4j.util.IterableAdapter;
 import org.trie4j.util.Pair;
 
-public abstract class AbstractTermIdTrie extends AbstractTrie implements TermIdTrie{
-	private static class StringIterableAdapter extends IterableAdapter<Pair<String, Integer>, String>{
-		public StringIterableAdapter(Iterable<Pair<String, Integer>> iterable) {
-			super(iterable);
-		}
-		@Override
-		protected String convert(Pair<String, Integer> value) {
-			return value.getFirst();
-		}
-	}
+public abstract class AbstractTermIdTrie extends AbstractTrie implements TermIdTrie {
+    private static class StringIterableAdapter extends IterableAdapter<Pair<String, Integer>, String> {
+        public StringIterableAdapter(Iterable<Pair<String, Integer>> iterable) {
+            super(iterable);
+        }
 
-	@Override
-	public boolean contains(String word) {
-		return getTermId(word) != -1;
-	}
+        @Override
+        protected String convert(Pair<String, Integer> value) {
+            return value.getFirst();
+        }
+    }
 
-	@Override
-	public Iterable<String> commonPrefixSearch(String query) {
-		return new StringIterableAdapter(commonPrefixSearchWithTermId(query));
-	}
+    @Override
+    public boolean contains(String word) {
+        return getTermId(word) != -1;
+    }
 
-	@Override
-	public Iterable<String> predictiveSearch(String prefix) {
-		return new StringIterableAdapter(predictiveSearchWithTermId(prefix));
-	}
+    @Override
+    public Iterable<String> commonPrefixSearch(String query) {
+        return new StringIterableAdapter(commonPrefixSearchWithTermId(query));
+    }
+
+    @Override
+    public Iterable<String> predictiveSearch(String prefix) {
+        return new StringIterableAdapter(predictiveSearchWithTermId(prefix));
+    }
 }

@@ -18,16 +18,16 @@ package org.trie4j;
 import org.trie4j.patricia.MapTailPatriciaTrie;
 
 public abstract class AbstractImmutableMapTrieTest<T extends MapTrie<Integer>>
-extends AbstractMapTrieTest<MapTailPatriciaTrie<Integer>, T> {
-	protected abstract T buildSecond(MapTrie<Integer> firstTrie);
+        extends AbstractMapTrieTest<MapTailPatriciaTrie<Integer>, T> {
+    protected abstract T buildSecond(MapTrie<Integer> firstTrie);
 
-	@Override
-	protected MapTailPatriciaTrie<Integer> createFirstTrie() {
-		return new MapTailPatriciaTrie<>();
-	}
-	
-	@Override
-	protected T buildSecondTrie(MapTailPatriciaTrie<Integer> firstTrie) {
-		return buildSecond(firstTrie);
-	}
+    @Override
+    protected MapTailPatriciaTrie<Integer> createFirstTrie() {
+        return new MapTailPatriciaTrie<>();
+    }
+
+    @Override
+    protected T buildSecondTrie(MapTailPatriciaTrie<Integer> firstTrie) {
+        return buildSecond(firstTrie);
+    }
 }

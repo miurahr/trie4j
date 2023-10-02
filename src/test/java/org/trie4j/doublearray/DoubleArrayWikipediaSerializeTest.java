@@ -18,10 +18,9 @@ package org.trie4j.doublearray;
 import org.trie4j.AbstractWikipediaSerializeTest;
 import org.trie4j.Trie;
 
-public class DoubleArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie trie) {
-		return new DoubleArray(trie);
-	}
+public class DoubleArrayWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie trie) {
+        return new DoubleArray(trie);
+    }
 }

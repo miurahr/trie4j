@@ -24,37 +24,33 @@ import org.trie4j.patricia.PatriciaTrie;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
 public class Tries {
-	public static Trie mutableTrie(){
-		return new PatriciaTrie();
-	}
+    public static Trie mutableTrie() {
+        return new PatriciaTrie();
+    }
 
-	public static Trie fastImmutableTrie(Trie orig){
-		return new DoubleArray(orig);
-	}
+    public static Trie fastImmutableTrie(Trie orig) {
+        return new DoubleArray(orig);
+    }
 
-	public static Trie fastImmutableTermIdTrie(Trie orig){
-		return new DoubleArray(orig);
-	}
+    public static Trie fastImmutableTermIdTrie(Trie orig) {
+        return new DoubleArray(orig);
+    }
 
-	public static Trie smallImmutableTrie(Trie orig){
-		return new TailLOUDSTrie(
-				orig,
-				new LOUDSPPBvTree(
-						new LongsRank0OnlySuccinctBitVector(orig.size() * 2),
-						new LongsSuccinctBitVector(orig.size() * 2)
-						),
-				new SuffixTrieDenseTailArrayBuilder()
-				);
-	}
+    public static Trie smallImmutableTrie(Trie orig) {
+        return new TailLOUDSTrie(
+                orig,
+                new LOUDSPPBvTree(
+                        new LongsRank0OnlySuccinctBitVector(orig.size() * 2),
+                        new LongsSuccinctBitVector(orig.size() * 2)),
+                new SuffixTrieDenseTailArrayBuilder());
+    }
 
-	public static TermIdTrie smallImmutableTermIdTrie(Trie orig){
-		return new TailLOUDSTrie(
-				orig,
-				new LOUDSPPBvTree(
-						new LongsRank0OnlySuccinctBitVector(orig.size() * 2),
-						new LongsSuccinctBitVector(orig.size() * 2)
-						),
-				new SuffixTrieDenseTailArrayBuilder()
-				);
-	}
+    public static TermIdTrie smallImmutableTermIdTrie(Trie orig) {
+        return new TailLOUDSTrie(
+                orig,
+                new LOUDSPPBvTree(
+                        new LongsRank0OnlySuccinctBitVector(orig.size() * 2),
+                        new LongsSuccinctBitVector(orig.size() * 2)),
+                new SuffixTrieDenseTailArrayBuilder());
+    }
 }

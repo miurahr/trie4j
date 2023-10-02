@@ -19,69 +19,66 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import org.trie4j.bv.BytesSuccinctBitVector;
 import org.trie4j.bv.SuccinctBitVector;
 
-public class SBVTailIndexAppendingBuilder
-implements Externalizable, TailIndexBuilder{
-	public SBVTailIndexAppendingBuilder() {
-		sbv = new BytesSuccinctBitVector();
-	}
+public class SBVTailIndexAppendingBuilder implements Externalizable, TailIndexBuilder {
+    public SBVTailIndexAppendingBuilder() {
+        sbv = new BytesSuccinctBitVector();
+    }
 
-	public SBVTailIndexAppendingBuilder(int initialCapacity) {
-		sbv = new BytesSuccinctBitVector(initialCapacity);
-	}
+    public SBVTailIndexAppendingBuilder(int initialCapacity) {
+        sbv = new BytesSuccinctBitVector(initialCapacity);
+    }
 
-	public SuccinctBitVector getSbv() {
-		return sbv;
-	}
+    public SuccinctBitVector getSbv() {
+        return sbv;
+    }
 
-	@Override
-	public void add(int nodeId, int start, int end) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a strictly increasing.");
-		}
-		for(int i = start; i < end; i++){
-			sbv.append1();
-		}
-		sbv.append0();
-		current++;
-	}
+    @Override
+    public void add(int nodeId, int start, int end) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a strictly increasing.");
+        }
+        for (int i = start; i < end; i++) {
+            sbv.append1();
+        }
+        sbv.append0();
+        current++;
+    }
 
-	@Override
-	public void addEmpty(int nodeId) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a strictly increasing.");
-		}
-		sbv.append0();
-		current++;
-	}
+    @Override
+    public void addEmpty(int nodeId) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a strictly increasing.");
+        }
+        sbv.append0();
+        current++;
+    }
 
-	@Override
-	public void trimToSize() {
-//		bs.trimToSize();
-	}
+    @Override
+    public void trimToSize() {
+        //		bs.trimToSize();
+    }
 
-	@Override
-	public TailIndex build() {
-		return new SBVTailIndex(sbv, current);
-	}
+    @Override
+    public TailIndex build() {
+        return new SBVTailIndex(sbv, current);
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		current = in.readInt();
-		sbv = (SuccinctBitVector)in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        current = in.readInt();
+        sbv = (SuccinctBitVector) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException{
-		out.writeInt(current);
-		out.writeObject(sbv);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeInt(current);
+        out.writeObject(sbv);
+    }
 
-	private int current;
-	private SuccinctBitVector sbv;
-	private static final long serialVersionUID = 8843853578097509573L;
+    private int current;
+    private SuccinctBitVector sbv;
+    private static final long serialVersionUID = 8843853578097509573L;
 }

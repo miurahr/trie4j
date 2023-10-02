@@ -26,58 +26,60 @@ import org.trie4j.test.WikipediaTitles;
 import org.trie4j.util.IntArray;
 
 public class SBVConcatTailArrayTest {
-	@Test
-	public void test() throws Exception{
-		// 普通にSBVConcatTailArrayIndexBuilder使った場合と、
-		// add毎にappendするTailArrayIndexBuilderを作ってそれを使った
-		// 場合でbitvectorやcacheに差が出るか調べる
-		TailPatriciaTrie org = new TailPatriciaTrie(new ConcatTailBuilder());
-		new WikipediaTitles().insertTo(org);
-		TailLOUDSTrie louds1 = new TailLOUDSTrie(org, new SBVConcatTailArrayAppendingBuilder());
-		new WikipediaTitles().assertAllContains(louds1);
-		BytesSuccinctBitVector sbv1 = (BytesSuccinctBitVector)((SBVTailIndex)((DefaultTailArray)louds1.getTailArray()).getTailIndex()).getSbv();
-		TailLOUDSTrie louds2 = new TailLOUDSTrie(org, new SBVConcatTailArrayBuilder());
-		new WikipediaTitles().assertAllContains(louds2);
-		BytesSuccinctBitVector sbv2 = (BytesSuccinctBitVector)((SBVTailIndex)((DefaultTailArray)louds2.getTailArray()).getTailIndex()).getSbv();
-		{
-			int n = sbv1.size();
-			System.out.println("sbv size: " + n);
-			Assert.assertEquals(n, sbv2.size());
-			for(int i = 0; i < n; i++){
-				Assert.assertEquals(i + "th bit", sbv1.get(i), sbv2.get(i));
-			}
-		}
-		{
-			int[] countCache1 = sbv1.getCountCache0();
-			int[] countCache2 = sbv2.getCountCache0();
-			int n = countCache1.length;
-			System.out.println("countCache0 size should be: " + (sbv1.size() / 64 + 1));
-			System.out.println("countCache0 size: " + n);
-//			Assert.assertEquals(n, countCache2.length);
-			n = Math.min(countCache1.length, countCache2.length);
-			for(int i = 0; i < n; i++){
-				Assert.assertEquals(i + "th index cache.", countCache1[i], countCache2[i]);
-			}
-		}
-		{
-			IntArray indexCache1 = sbv1.getIndexCache0();
-			IntArray indexCache2 = sbv2.getIndexCache0();
-			int n = indexCache1.size();
-			System.out.println("indexCache0 size1: " + n);
-			System.out.println("indexCache0 size2: " + indexCache2.size());
-//			Assert.assertEquals(n, countCache2.length);
-			n = Math.min(indexCache1.size(), indexCache2.size());
-			for(int i = 0; i < 10; i++){
-				System.out.print(indexCache1.get(i) + ", ");
-			}
-			System.out.println();
-			for(int i = 0; i < 10; i++){
-				System.out.print(indexCache2.get(i) + ", ");
-			}
-			System.out.println();
-			for(int i = 0; i < n; i++){
-				Assert.assertEquals(i + "th index cache.", indexCache1.get(i), indexCache2.get(i));
-			}
-		}
-	}
+    @Test
+    public void test() throws Exception {
+        // 普通にSBVConcatTailArrayIndexBuilder使った場合と、
+        // add毎にappendするTailArrayIndexBuilderを作ってそれを使った
+        // 場合でbitvectorやcacheに差が出るか調べる
+        TailPatriciaTrie org = new TailPatriciaTrie(new ConcatTailBuilder());
+        new WikipediaTitles().insertTo(org);
+        TailLOUDSTrie louds1 = new TailLOUDSTrie(org, new SBVConcatTailArrayAppendingBuilder());
+        new WikipediaTitles().assertAllContains(louds1);
+        BytesSuccinctBitVector sbv1 = (BytesSuccinctBitVector)
+                ((SBVTailIndex) ((DefaultTailArray) louds1.getTailArray()).getTailIndex()).getSbv();
+        TailLOUDSTrie louds2 = new TailLOUDSTrie(org, new SBVConcatTailArrayBuilder());
+        new WikipediaTitles().assertAllContains(louds2);
+        BytesSuccinctBitVector sbv2 = (BytesSuccinctBitVector)
+                ((SBVTailIndex) ((DefaultTailArray) louds2.getTailArray()).getTailIndex()).getSbv();
+        {
+            int n = sbv1.size();
+            System.out.println("sbv size: " + n);
+            Assert.assertEquals(n, sbv2.size());
+            for (int i = 0; i < n; i++) {
+                Assert.assertEquals(i + "th bit", sbv1.get(i), sbv2.get(i));
+            }
+        }
+        {
+            int[] countCache1 = sbv1.getCountCache0();
+            int[] countCache2 = sbv2.getCountCache0();
+            int n = countCache1.length;
+            System.out.println("countCache0 size should be: " + (sbv1.size() / 64 + 1));
+            System.out.println("countCache0 size: " + n);
+            //			Assert.assertEquals(n, countCache2.length);
+            n = Math.min(countCache1.length, countCache2.length);
+            for (int i = 0; i < n; i++) {
+                Assert.assertEquals(i + "th index cache.", countCache1[i], countCache2[i]);
+            }
+        }
+        {
+            IntArray indexCache1 = sbv1.getIndexCache0();
+            IntArray indexCache2 = sbv2.getIndexCache0();
+            int n = indexCache1.size();
+            System.out.println("indexCache0 size1: " + n);
+            System.out.println("indexCache0 size2: " + indexCache2.size());
+            //			Assert.assertEquals(n, countCache2.length);
+            n = Math.min(indexCache1.size(), indexCache2.size());
+            for (int i = 0; i < 10; i++) {
+                System.out.print(indexCache1.get(i) + ", ");
+            }
+            System.out.println();
+            for (int i = 0; i < 10; i++) {
+                System.out.print(indexCache2.get(i) + ", ");
+            }
+            System.out.println();
+            for (int i = 0; i < n; i++) {
+                Assert.assertEquals(i + "th index cache.", indexCache1.get(i), indexCache2.get(i));
+            }
+        }
+    }
 }

@@ -21,12 +21,10 @@ import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
 public class MapTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest
-extends AbstractMapTrieWikipediaSerializeTest{
-	@Override
-	protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
-		return new MapTailLOUDSTrie<Integer>(
-				firstTrie,
-				new LOUDSPPBvTree(firstTrie.nodeSize()),
-				new SuffixTrieDenseTailArrayBuilder());
-	}
+        extends AbstractMapTrieWikipediaSerializeTest {
+    @Override
+    protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
+        return new MapTailLOUDSTrie<Integer>(
+                firstTrie, new LOUDSPPBvTree(firstTrie.nodeSize()), new SuffixTrieDenseTailArrayBuilder());
+    }
 }

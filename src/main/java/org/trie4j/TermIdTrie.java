@@ -25,35 +25,35 @@ import org.trie4j.util.Pair;
  * no need to be same order to keys.
  * @author Takao Nakaguchi
  */
-public interface TermIdTrie extends Trie{
-	/**
-	 * Get the root node of this trie.
-	 * @return root node.
-	 */
-	@Override
-	public TermIdNode getRoot();
+public interface TermIdTrie extends Trie {
+    /**
+     * Get the root node of this trie.
+     * @return root node.
+     */
+    @Override
+    public TermIdNode getRoot();
 
-	/**
-	 * Returns the ID for text. If text doesn't exist in this Trie, this
-	 * method returns -1.
-	 * @param text key to obtain key ID.
-	 * @return ID or -1
-	 */
-	int getTermId(String text);
+    /**
+     * Returns the ID for text. If text doesn't exist in this Trie, this
+     * method returns -1.
+     * @param text key to obtain key ID.
+     * @return ID or -1
+     */
+    int getTermId(String text);
 
-	/**
-	 * Search texts that is part of query and returns found keys with
-	 * key id.
-	 * @param query
-	 * @return Iterable of found pairs (key and key id).
-	 */
-	Iterable<Pair<String, Integer>> commonPrefixSearchWithTermId(String query);
+    /**
+     * Search texts that is part of query and returns found keys with
+     * key id.
+     * @param query
+     * @return Iterable of found pairs (key and key id).
+     */
+    Iterable<Pair<String, Integer>> commonPrefixSearchWithTermId(String query);
 
-	/**
-	 * Search texts that is begin with prefix and returns found keys with
-	 * key id.
-	 * @param query
-	 * @return Iterable of found pairs (key and key id).
-	 */
-	Iterable<Pair<String, Integer>> predictiveSearchWithTermId(String prefix);
+    /**
+     * Search texts that is begin with prefix and returns found keys with
+     * key id.
+     * @param query
+     * @return Iterable of found pairs (key and key id).
+     */
+    Iterable<Pair<String, Integer>> predictiveSearchWithTermId(String prefix);
 }

@@ -21,13 +21,9 @@ import org.trie4j.bv.LongsSuccinctBitVector;
 import org.trie4j.louds.bvtree.LOUDSBvTree;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class LongsTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie orig) {
-		return new TailLOUDSTrie(
-				orig,
-				new LOUDSBvTree(new LongsSuccinctBitVector()),
-				new ConcatTailArrayBuilder());
-	}
+public class LongsTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie orig) {
+        return new TailLOUDSTrie(orig, new LOUDSBvTree(new LongsSuccinctBitVector()), new ConcatTailArrayBuilder());
+    }
 }

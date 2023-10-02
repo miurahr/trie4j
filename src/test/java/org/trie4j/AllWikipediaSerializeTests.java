@@ -17,87 +17,53 @@ package org.trie4j;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.trie4j.doublearray.DoubleArrayWikipediaSerializeTest;
-import org.trie4j.doublearray.MapDoubleArrayWikipediaSerializeTest;
-import org.trie4j.doublearray.MapTailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest;
-import org.trie4j.doublearray.MapTailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest;
-import org.trie4j.doublearray.TailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest;
-import org.trie4j.doublearray.TailDoubleArrayWithSuffixTrieDenseIndexTailArrayBuilderWikipediaSerializeTest;
-import org.trie4j.doublearray.TailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest;
 import org.trie4j.louds.BytesConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.ConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest;
 import org.trie4j.louds.LongsConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
 import org.trie4j.louds.LongsTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.LongsTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.MapTailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest;
 import org.trie4j.louds.TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest;
-import org.trie4j.louds.TailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest;
-import org.trie4j.patricia.MapPatriciaTrieWikipediaSerializeTest;
-import org.trie4j.patricia.MapTailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest;
-import org.trie4j.patricia.MapTailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest;
-import org.trie4j.patricia.PatriciaTrieWikipediaSerializeTest;
-import org.trie4j.patricia.TailPatriciaTrieWithConcatTailBuilderRebuildTrieWikipediaSerializeTest;
-import org.trie4j.patricia.TailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest;
-import org.trie4j.patricia.TailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest;
-import org.trie4j.setAndMap.HashSetWikipediaSerializeTest;
-import org.trie4j.setAndMap.TreeSetWikipediaSerializeTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-/*
-	HashSetWikipediaSerializeTest.class,
-	TreeSetWikipediaSerializeTest.class,
-	PatriciaTrieWikipediaSerializeTest.class,
-	TailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest.class,
-	TailPatriciaTrieWithConcatTailBuilderRebuildTrieWikipediaSerializeTest.class,
-	TailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
-	DoubleArrayWikipediaSerializeTest.class,
-	TailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest.class,
-	TailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
-	TailDoubleArrayWithSuffixTrieDenseIndexTailArrayBuilderWikipediaSerializeTest.class,
-	TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	ConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	LongsTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	TailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
-	TailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
-	TailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-	TailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	TailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
-	TailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
-*/	TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-	BytesConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-	LongsTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-	LongsConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-//*/
-/*
-	MapPatriciaTrieWikipediaSerializeTest.class,
-	MapTailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest.class,
-	MapTailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
-	MapDoubleArrayWikipediaSerializeTest.class,
-	MapTailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest.class,
-	MapTailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
-	MapTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
-	MapTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
-//*/
+    /*
+    	HashSetWikipediaSerializeTest.class,
+    	TreeSetWikipediaSerializeTest.class,
+    	PatriciaTrieWikipediaSerializeTest.class,
+    	TailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest.class,
+    	TailPatriciaTrieWithConcatTailBuilderRebuildTrieWikipediaSerializeTest.class,
+    	TailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
+    	DoubleArrayWikipediaSerializeTest.class,
+    	TailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest.class,
+    	TailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
+    	TailDoubleArrayWithSuffixTrieDenseIndexTailArrayBuilderWikipediaSerializeTest.class,
+    	TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	ConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	LongsTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
+    	TailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
+    */ TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    BytesConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    LongsTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    LongsConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    // */
+    /*
+    	MapPatriciaTrieWikipediaSerializeTest.class,
+    	MapTailPatriciaTrieWithConcatTailBuilderWikipediaSerializeTest.class,
+    	MapTailPatriciaTrieWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
+    	MapDoubleArrayWikipediaSerializeTest.class,
+    	MapTailDoubleArrayWithConcatTailBuilderWikipediaSerializeTest.class,
+    	MapTailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest.class,
+    	MapTailLOUDSTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSPPTrieWithConcatTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSPPTrieWithSBVConcatTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSPPTrieWithSuffixTrieTailArrayWikipediaSerializeTest.class,
+    	MapTailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest.class,
+    //*/
 })
-public class AllWikipediaSerializeTests {
-}
+public class AllWikipediaSerializeTests {}

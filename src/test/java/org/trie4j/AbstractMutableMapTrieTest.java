@@ -15,10 +15,9 @@
  */
 package org.trie4j;
 
-public abstract class AbstractMutableMapTrieTest<T extends MapTrie<Integer>>
-extends AbstractMapTrieTest<T, T> {
-	@Override
-	protected T buildSecondTrie(T firstTrie) {
-		return firstTrie;
-	}
+public abstract class AbstractMutableMapTrieTest<T extends MapTrie<Integer>> extends AbstractMapTrieTest<T, T> {
+    @Override
+    protected T buildSecondTrie(T firstTrie) {
+        return firstTrie;
+    }
 }

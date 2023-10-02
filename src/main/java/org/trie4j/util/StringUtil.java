@@ -18,35 +18,35 @@ package org.trie4j.util;
 import java.io.UnsupportedEncodingException;
 
 public class StringUtil {
-	public static byte[] toUTF8(String str){
-		try {
-			return str.getBytes(utf8);
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    public static byte[] toUTF8(String str) {
+        try {
+            return str.getBytes(utf8);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	public static String fromUTF8(byte[] bytes){
-		try {
-			return new String(bytes, utf8);
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    public static String fromUTF8(byte[] bytes) {
+        try {
+            return new String(bytes, utf8);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	public static String fromUTF8(byte[] bytes, int offset, int length){
-		try {
-			return new String(bytes, offset, length, utf8);
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    public static String fromUTF8(byte[] bytes, int offset, int length) {
+        try {
+            return new String(bytes, offset, length, utf8);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	public static String repeted(String str, int count){
-		StringBuilder b = new StringBuilder();
-		for(int i = 0; i < count; i++) b.append(str);
-		return b.toString();
-	}
+    public static String repeted(String str, int count) {
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; i < count; i++) b.append(str);
+        return b.toString();
+    }
 
-	private static final String utf8 = "UTF8";
+    private static final String utf8 = "UTF8";
 }

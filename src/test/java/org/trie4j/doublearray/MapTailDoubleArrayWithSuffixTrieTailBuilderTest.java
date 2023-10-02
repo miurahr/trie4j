@@ -20,9 +20,9 @@ import org.trie4j.MapTrie;
 import org.trie4j.tail.SuffixTrieTailArray;
 
 public class MapTailDoubleArrayWithSuffixTrieTailBuilderTest
-extends AbstractImmutableMapTrieTest<MapTailDoubleArray<Integer>>{
-	@Override
-	protected MapTailDoubleArray<Integer> buildSecond(MapTrie<Integer> firstTrie) {
-		return new MapTailDoubleArray<Integer>(firstTrie, new SuffixTrieTailArray());
-	}
+        extends AbstractImmutableMapTrieTest<MapTailDoubleArray<Integer>> {
+    @Override
+    protected MapTailDoubleArray<Integer> buildSecond(MapTrie<Integer> firstTrie) {
+        return new MapTailDoubleArray<Integer>(firstTrie, new SuffixTrieTailArray());
+    }
 }

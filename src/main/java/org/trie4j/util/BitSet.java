@@ -16,6 +16,7 @@
 package org.trie4j.util;
 
 public interface BitSet {
-	int size();
-	boolean get(int pos);
+    int size();
+
+    boolean get(int pos);
 }

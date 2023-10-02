@@ -15,43 +15,48 @@
  */
 package org.trie4j.patricia;
 
-public class TailPatriciaTrieNodeAdapter implements org.trie4j.Node{
-	public TailPatriciaTrieNodeAdapter(TailPatriciaTrieNode node, CharSequence tails){
-		this.node = node;
-		this.tails = tails;
-	}
+public class TailPatriciaTrieNodeAdapter implements org.trie4j.Node {
+    public TailPatriciaTrieNodeAdapter(TailPatriciaTrieNode node, CharSequence tails) {
+        this.node = node;
+        this.tails = tails;
+    }
 
-	public TailPatriciaTrieNode getNode() {
-		return node;
-	}
+    public TailPatriciaTrieNode getNode() {
+        return node;
+    }
 
-	@Override
-	public org.trie4j.Node getChild(char c) {
-		TailPatriciaTrieNode n = node.getChild(c);
-		if(n == null) return null;
-		else return new TailPatriciaTrieNodeAdapter(n, tails);
-	}
-	@Override
-	public org.trie4j.Node[] getChildren() {
-		TailPatriciaTrieNode[] children = node.getChildren();
-		if(children == null) return null;
-		org.trie4j.Node[] ret = new org.trie4j.Node[children.length];
-		for(int i = 0; i < ret.length; i++){
-			ret[i] = new TailPatriciaTrieNodeAdapter(node.getChildren()[i], tails);
-		}
-		return ret;
-	}
-	public char getFirstLetter(){
-		return node.getFirstLetter();
-	}
-	@Override
-	public char[] getLetters() {
-		return node.getLetters(tails);
-	}
-	@Override
-	public boolean isTerminate() {
-		return node.isTerminate();
-	}
-	private TailPatriciaTrieNode node;
-	private CharSequence tails;
+    @Override
+    public org.trie4j.Node getChild(char c) {
+        TailPatriciaTrieNode n = node.getChild(c);
+        if (n == null) return null;
+        else return new TailPatriciaTrieNodeAdapter(n, tails);
+    }
+
+    @Override
+    public org.trie4j.Node[] getChildren() {
+        TailPatriciaTrieNode[] children = node.getChildren();
+        if (children == null) return null;
+        org.trie4j.Node[] ret = new org.trie4j.Node[children.length];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = new TailPatriciaTrieNodeAdapter(node.getChildren()[i], tails);
+        }
+        return ret;
+    }
+
+    public char getFirstLetter() {
+        return node.getFirstLetter();
+    }
+
+    @Override
+    public char[] getLetters() {
+        return node.getLetters(tails);
+    }
+
+    @Override
+    public boolean isTerminate() {
+        return node.isTerminate();
+    }
+
+    private TailPatriciaTrieNode node;
+    private CharSequence tails;
 }

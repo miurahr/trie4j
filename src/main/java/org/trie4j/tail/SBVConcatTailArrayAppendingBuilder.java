@@ -20,23 +20,22 @@ import org.trie4j.tail.builder.TailBuilder;
 import org.trie4j.tail.index.SBVTailIndexAppendingBuilder;
 import org.trie4j.tail.index.TailIndexBuilder;
 
-public class SBVConcatTailArrayAppendingBuilder
-extends AbstractTailArrayBuilder
-implements TailArrayBuilder{
-	public SBVConcatTailArrayAppendingBuilder() {
-		super();
-	}
+public class SBVConcatTailArrayAppendingBuilder extends AbstractTailArrayBuilder implements TailArrayBuilder {
+    public SBVConcatTailArrayAppendingBuilder() {
+        super();
+    }
 
-	public SBVConcatTailArrayAppendingBuilder(int initialCapacity) {
-		super(initialCapacity);
-	}
+    public SBVConcatTailArrayAppendingBuilder(int initialCapacity) {
+        super(initialCapacity);
+    }
 
-	@Override
-	protected TailBuilder newTailBuilder(StringBuilder tails) {
-		return new ConcatTailBuilder(tails);
-	}
-	@Override
-	protected TailIndexBuilder newTailIndexBuilder(int initialCapacity) {
-		return new SBVTailIndexAppendingBuilder(initialCapacity);
-	}
+    @Override
+    protected TailBuilder newTailBuilder(StringBuilder tails) {
+        return new ConcatTailBuilder(tails);
+    }
+
+    @Override
+    protected TailIndexBuilder newTailIndexBuilder(int initialCapacity) {
+        return new SBVTailIndexAppendingBuilder(initialCapacity);
+    }
 }

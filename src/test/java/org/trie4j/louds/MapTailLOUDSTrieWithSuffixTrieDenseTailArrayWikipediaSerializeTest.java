@@ -20,9 +20,9 @@ import org.trie4j.MapTrie;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
 public class MapTailLOUDSTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest
-extends AbstractMapTrieWikipediaSerializeTest{
-	@Override
-	protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
-		return new MapTailLOUDSTrie<Integer>(firstTrie, new SuffixTrieDenseTailArrayBuilder());
-	}
+        extends AbstractMapTrieWikipediaSerializeTest {
+    @Override
+    protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
+        return new MapTailLOUDSTrie<Integer>(firstTrie, new SuffixTrieDenseTailArrayBuilder());
+    }
 }

@@ -22,14 +22,12 @@ import org.trie4j.bv.LongsSuccinctBitVector;
 import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
-public class TestTailLOUDSPPTrieWithConcatTailArrayWikipediaTest extends AbstractWikipediaTest{
-	@Override
-	protected Trie buildSecondTrie(Trie first) {
-		return new TailLOUDSTrie(
-				first,
-				new LOUDSPPBvTree(
-						new BytesRank0OnlySuccinctBitVector(),
-						new LongsSuccinctBitVector()),
-				new SuffixTrieDenseTailArrayBuilder(first.size()));
-	}
+public class TestTailLOUDSPPTrieWithConcatTailArrayWikipediaTest extends AbstractWikipediaTest {
+    @Override
+    protected Trie buildSecondTrie(Trie first) {
+        return new TailLOUDSTrie(
+                first,
+                new LOUDSPPBvTree(new BytesRank0OnlySuccinctBitVector(), new LongsSuccinctBitVector()),
+                new SuffixTrieDenseTailArrayBuilder(first.size()));
+    }
 }

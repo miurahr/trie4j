@@ -22,94 +22,91 @@ import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-public class BitVector01Divider implements Externalizable{
-	public BitVector01Divider(){
-	}
+public class BitVector01Divider implements Externalizable {
+    public BitVector01Divider() {}
 
-	public BitVector01Divider(BitVector r0, BitVector r1){
-		this.r0 = r0;
-		this.r1 = r1;
-	}
+    public BitVector01Divider(BitVector r0, BitVector r1) {
+        this.r0 = r0;
+        this.r1 = r1;
+    }
 
-	public BitVector01Divider(boolean first, boolean zeroCounting){
-		this.first = first;
-		this.zeroCounting = zeroCounting;
-	}
+    public BitVector01Divider(boolean first, boolean zeroCounting) {
+        this.first = first;
+        this.zeroCounting = zeroCounting;
+    }
 
-	public boolean isFirst() {
-		return first;
-	}
+    public boolean isFirst() {
+        return first;
+    }
 
-	public boolean isZeroCounting() {
-		return zeroCounting;
-	}
+    public boolean isZeroCounting() {
+        return zeroCounting;
+    }
 
-	public void setVectors(BitVector r0, BitVector r1){
-		this.r0 = r0;
-		this.r1 = r1;
-	}
+    public void setVectors(BitVector r0, BitVector r1) {
+        this.r0 = r0;
+        this.r1 = r1;
+    }
 
-	public void append0(){
-		if(first){
-			firstProc(false);
-			return;
-		}
-		if(zeroCounting){
-			r0.append1();
-		} else{
-			r1.append0();
-			zeroCounting = true;
-		}
-	}
+    public void append0() {
+        if (first) {
+            firstProc(false);
+            return;
+        }
+        if (zeroCounting) {
+            r0.append1();
+        } else {
+            r1.append0();
+            zeroCounting = true;
+        }
+    }
 
-	public void append1(){
-		if(first){
-			firstProc(true);
-			return;
-		}
-		if(zeroCounting){
-			r0.append0();
-			zeroCounting = false;
-		} else{
-			r1.append1();
-		}
-	}
+    public void append1() {
+        if (first) {
+            firstProc(true);
+            return;
+        }
+        if (zeroCounting) {
+            r0.append0();
+            zeroCounting = false;
+        } else {
+            r1.append1();
+        }
+    }
 
-	private void firstProc(boolean b){
-		zeroCounting = !b;
-		r0.append0();
-		r1.append0();
-		first = false;
-	}
+    private void firstProc(boolean b) {
+        zeroCounting = !b;
+        r0.append0();
+        r1.append0();
+        first = false;
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException {
-		first = in.readBoolean();
-		zeroCounting = in.readBoolean();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        first = in.readBoolean();
+        zeroCounting = in.readBoolean();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeBoolean(first);
-		out.writeBoolean(zeroCounting);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeBoolean(first);
+        out.writeBoolean(zeroCounting);
+    }
 
-	/**
-	 * Read data from InputStream. This method doesn't care about
-	 * r0 and r1. Caller must load these bvs and set through setR0 and setR1.
-	 * @param is
-	 * @throws IOException
-	 */
-	public void readFrom(InputStream is)
-	throws IOException{
-		DataInputStream dis = new DataInputStream(is);
-		first = dis.readBoolean();
-		zeroCounting = dis.readBoolean();
-	}
+    /**
+     * Read data from InputStream. This method doesn't care about
+     * r0 and r1. Caller must load these bvs and set through setR0 and setR1.
+     * @param is
+     * @throws IOException
+     */
+    public void readFrom(InputStream is) throws IOException {
+        DataInputStream dis = new DataInputStream(is);
+        first = dis.readBoolean();
+        zeroCounting = dis.readBoolean();
+    }
 
-	private transient BitVector r0;
-	private transient BitVector r1;
-	private boolean first = true;
-	private boolean zeroCounting;
+    private transient BitVector r0;
+    private transient BitVector r1;
+    private boolean first = true;
+    private boolean zeroCounting;
 }

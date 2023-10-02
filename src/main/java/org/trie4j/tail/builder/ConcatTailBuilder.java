@@ -17,44 +17,43 @@ package org.trie4j.tail.builder;
 
 import java.io.Serializable;
 
-public class ConcatTailBuilder
-implements Serializable, TailBuilder{
-	public ConcatTailBuilder() {
-		tails = new StringBuilder();
-	}
+public class ConcatTailBuilder implements Serializable, TailBuilder {
+    public ConcatTailBuilder() {
+        tails = new StringBuilder();
+    }
 
-	public ConcatTailBuilder(StringBuilder tails) {
-		this.tails = tails;
-	}
+    public ConcatTailBuilder(StringBuilder tails) {
+        this.tails = tails;
+    }
 
-	public CharSequence getTails() {
-		return tails;
-	}
+    public CharSequence getTails() {
+        return tails;
+    }
 
-	@Override
-	public int insert(CharSequence letters) {
-		return insert(letters, 0, letters.length());
-	}
+    @Override
+    public int insert(CharSequence letters) {
+        return insert(letters, 0, letters.length());
+    }
 
-	@Override
-	public int insert(CharSequence letters, int offset, int len){
-		int ret = tails.length();
-		tails.append(letters, offset, offset + len).append('\0');
-		return ret;
-	}
+    @Override
+    public int insert(CharSequence letters, int offset, int len) {
+        int ret = tails.length();
+        tails.append(letters, offset, offset + len).append('\0');
+        return ret;
+    }
 
-	@Override
-	public int insert(char[] letters) {
-		return insert(letters, 0, letters.length);
-	}
+    @Override
+    public int insert(char[] letters) {
+        return insert(letters, 0, letters.length);
+    }
 
-	@Override
-	public int insert(char[] letters, int offset, int len){
-		int ret = tails.length();
-		tails.append(letters, offset, len).append('\0');
-		return ret;
-	}
+    @Override
+    public int insert(char[] letters, int offset, int len) {
+        int ret = tails.length();
+        tails.append(letters, offset, len).append('\0');
+        return ret;
+    }
 
-	private StringBuilder tails;
-	private static final long serialVersionUID = -2965476329952753114L;
+    private StringBuilder tails;
+    private static final long serialVersionUID = -2965476329952753114L;
 }

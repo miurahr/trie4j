@@ -16,8 +16,11 @@
 package org.trie4j.tail;
 
 public interface TailArray {
-	TailCharIterator newIterator(int offset);
-	TailCharIterator newIterator();
-	int getIteratorOffset(int nodeId);
-	void getChars(StringBuilder builder, int nodeId);
+    TailCharIterator newIterator(int offset);
+
+    TailCharIterator newIterator();
+
+    int getIteratorOffset(int nodeId);
+
+    void getChars(StringBuilder builder, int nodeId);
 }

@@ -16,25 +16,24 @@
 package org.trie4j.doublearray;
 
 import java.io.OutputStreamWriter;
-
 import org.trie4j.AbstractMapTrieWikipediaTest;
 import org.trie4j.MapTrie;
 import org.trie4j.Trie;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class MapTailDoubleArrayWithConcatTailBuilderWikipediaTest extends AbstractMapTrieWikipediaTest{
-	@Override
-	protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
-		return new MapTailDoubleArray<Integer>(firstTrie, new ConcatTailArrayBuilder());
-	}
+public class MapTailDoubleArrayWithConcatTailBuilderWikipediaTest extends AbstractMapTrieWikipediaTest {
+    @Override
+    protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
+        return new MapTailDoubleArray<Integer>(firstTrie, new ConcatTailArrayBuilder());
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	protected void afterVerification(Trie trie) throws Exception {
-		super.afterVerification(trie);
-		trie.dump(new OutputStreamWriter(System.out));
-		TailDoubleArray da = (TailDoubleArray)((MapTailDoubleArray<Integer>)trie).getTrie();
-		System.out.println("base.length: " + da.getBase().length);
-		System.out.println("term.size: " + da.getTerm().size());
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    protected void afterVerification(Trie trie) throws Exception {
+        super.afterVerification(trie);
+        trie.dump(new OutputStreamWriter(System.out));
+        TailDoubleArray da = (TailDoubleArray) ((MapTailDoubleArray<Integer>) trie).getTrie();
+        System.out.println("base.length: " + da.getBase().length);
+        System.out.println("term.size: " + da.getTerm().size());
+    }
 }

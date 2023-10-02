@@ -17,12 +17,10 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractWikipediaSerializeTest;
 import org.trie4j.Trie;
-import org.trie4j.patricia.PatriciaTrie;
 
-public class PatriciaTrieWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie firstTrie() {
-		return new PatriciaTrie();
-	}
+public class PatriciaTrieWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie firstTrie() {
+        return new PatriciaTrie();
+    }
 }

@@ -20,39 +20,36 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-public class ArrayTailIndex
-implements Externalizable, TailIndex{
-	public ArrayTailIndex() {
-	}
+public class ArrayTailIndex implements Externalizable, TailIndex {
+    public ArrayTailIndex() {}
 
-	public ArrayTailIndex(int[] indexes) {
-		this.indexes = indexes;
-	}
+    public ArrayTailIndex(int[] indexes) {
+        this.indexes = indexes;
+    }
 
-	@Override
-	public int size() {
-		return indexes.length;
-	}
+    @Override
+    public int size() {
+        return indexes.length;
+    }
 
-	public int[] getIndexes() {
-		return indexes;
-	}
+    public int[] getIndexes() {
+        return indexes;
+    }
 
-	@Override
-	public int get(int nodeId) {
-		return indexes[nodeId];
-	}
+    @Override
+    public int get(int nodeId) {
+        return indexes[nodeId];
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		indexes = (int[])in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        indexes = (int[]) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(indexes);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(indexes);
+    }
 
-	private int[] indexes = new int[]{};
+    private int[] indexes = new int[] {};
 }

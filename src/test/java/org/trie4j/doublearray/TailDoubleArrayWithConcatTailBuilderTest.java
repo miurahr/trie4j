@@ -19,10 +19,9 @@ import org.trie4j.AbstractTermIdTrieTest;
 import org.trie4j.Trie;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class TailDoubleArrayWithConcatTailBuilderTest
-extends AbstractTermIdTrieTest<TailDoubleArray>{
-	@Override
-	protected TailDoubleArray buildSecond(Trie firstTrie) {
-		return new TailDoubleArray(firstTrie, new ConcatTailArrayBuilder());
-	}
+public class TailDoubleArrayWithConcatTailBuilderTest extends AbstractTermIdTrieTest<TailDoubleArray> {
+    @Override
+    protected TailDoubleArray buildSecond(Trie firstTrie) {
+        return new TailDoubleArray(firstTrie, new ConcatTailArrayBuilder());
+    }
 }

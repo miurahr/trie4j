@@ -18,10 +18,9 @@ package org.trie4j.patricia;
 import org.trie4j.AbstractMutableTrieTest;
 import org.trie4j.tail.builder.ConcatTailBuilder;
 
-public class TailPatriciaTrieWithConcatTailBuilderTest
-extends AbstractMutableTrieTest<TailPatriciaTrie> {
-	@Override
-	protected TailPatriciaTrie createFirstTrie() {
-		return new TailPatriciaTrie(new ConcatTailBuilder());
-	}
+public class TailPatriciaTrieWithConcatTailBuilderTest extends AbstractMutableTrieTest<TailPatriciaTrie> {
+    @Override
+    protected TailPatriciaTrie createFirstTrie() {
+        return new TailPatriciaTrie(new ConcatTailBuilder());
+    }
 }

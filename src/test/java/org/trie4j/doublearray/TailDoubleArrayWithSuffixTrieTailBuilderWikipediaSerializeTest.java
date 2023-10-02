@@ -19,10 +19,9 @@ import org.trie4j.AbstractWikipediaSerializeTest;
 import org.trie4j.Trie;
 import org.trie4j.tail.SuffixTrieTailArray;
 
-public class TailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie trie) {
-		return new TailDoubleArray(trie, new SuffixTrieTailArray());
-	}
+public class TailDoubleArrayWithSuffixTrieTailBuilderWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie trie) {
+        return new TailDoubleArray(trie, new SuffixTrieTailArray());
+    }
 }

@@ -17,9 +17,12 @@ package org.trie4j.louds.bvtree;
 
 import org.trie4j.util.Range;
 
-public interface BvTree{
-	void appendChild();
-	void appendSelf();
-	void getChildNodeIds(int selfNodeId, Range range);
-	void trimToSize();
+public interface BvTree {
+    void appendChild();
+
+    void appendSelf();
+
+    void getChildNodeIds(int selfNodeId, Range range);
+
+    void trimToSize();
 }

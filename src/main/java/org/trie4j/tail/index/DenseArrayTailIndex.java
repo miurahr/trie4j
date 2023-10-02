@@ -19,65 +19,61 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import org.trie4j.bv.LongsRank1OnlySuccinctBitVector;
 import org.trie4j.bv.SuccinctBitVector;
 
-public class DenseArrayTailIndex
-implements Externalizable, TailIndex{
-	public DenseArrayTailIndex() {
-	}
+public class DenseArrayTailIndex implements Externalizable, TailIndex {
+    public DenseArrayTailIndex() {}
 
-	public DenseArrayTailIndex(int[] tail, byte[] bits, int bitsSize) {
-		this.sbv = new LongsRank1OnlySuccinctBitVector(bits, bitsSize);
-		this.tail = tail;
-	}
+    public DenseArrayTailIndex(int[] tail, byte[] bits, int bitsSize) {
+        this.sbv = new LongsRank1OnlySuccinctBitVector(bits, bitsSize);
+        this.tail = tail;
+    }
 
-	public DenseArrayTailIndex(SuccinctBitVector sbv, int[] tail) {
-		this.sbv = sbv;
-		this.tail = tail;
-	}
+    public DenseArrayTailIndex(SuccinctBitVector sbv, int[] tail) {
+        this.sbv = sbv;
+        this.tail = tail;
+    }
 
-	public SuccinctBitVector getSbv() {
-		return sbv;
-	}
+    public SuccinctBitVector getSbv() {
+        return sbv;
+    }
 
-	public void setSbv(SuccinctBitVector sbv) {
-		this.sbv = sbv;
-	}
+    public void setSbv(SuccinctBitVector sbv) {
+        this.sbv = sbv;
+    }
 
-	public int[] getTail() {
-		return tail;
-	}
+    public int[] getTail() {
+        return tail;
+    }
 
-	public void setTail(int[] tail) {
-		this.tail = tail;
-	}
+    public void setTail(int[] tail) {
+        this.tail = tail;
+    }
 
-	@Override
-	public int size() {
-		return sbv.size();
-	}
+    @Override
+    public int size() {
+        return sbv.size();
+    }
 
-	@Override
-	public int get(int nodeId) {
-		if(sbv.isZero(nodeId)) return -1;
-		return tail[sbv.rank1(nodeId) - 1];
-	}
+    @Override
+    public int get(int nodeId) {
+        if (sbv.isZero(nodeId)) return -1;
+        return tail[sbv.rank1(nodeId) - 1];
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		sbv = (SuccinctBitVector)in.readObject();
-		tail = (int[])in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        sbv = (SuccinctBitVector) in.readObject();
+        tail = (int[]) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(sbv);
-		out.writeObject(tail);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(sbv);
+        out.writeObject(tail);
+    }
 
-	private SuccinctBitVector sbv = new LongsRank1OnlySuccinctBitVector();
-	private int[] tail = {};
+    private SuccinctBitVector sbv = new LongsRank1OnlySuccinctBitVector();
+    private int[] tail = {};
 }

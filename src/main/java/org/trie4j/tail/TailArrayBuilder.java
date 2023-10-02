@@ -16,9 +16,13 @@
 package org.trie4j.tail;
 
 public interface TailArrayBuilder {
-	void append(int nodeId, CharSequence letters, int offset, int len);
-	void append(int nodeId, char[] letters, int offset, int len);
-	void appendEmpty(int nodeId);
-	void trimToSize();
-	TailArray build();
+    void append(int nodeId, CharSequence letters, int offset, int len);
+
+    void append(int nodeId, char[] letters, int offset, int len);
+
+    void appendEmpty(int nodeId);
+
+    void trimToSize();
+
+    TailArray build();
 }

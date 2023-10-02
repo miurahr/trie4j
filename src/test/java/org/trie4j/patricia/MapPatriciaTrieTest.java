@@ -17,10 +17,9 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractMutableMapTrieTest;
 
-public class MapPatriciaTrieTest
-extends AbstractMutableMapTrieTest<MapPatriciaTrie<Integer>>{
-	@Override
-	protected MapPatriciaTrie<Integer> createFirstTrie() {
-		return new MapPatriciaTrie<Integer>();
-	}
+public class MapPatriciaTrieTest extends AbstractMutableMapTrieTest<MapPatriciaTrie<Integer>> {
+    @Override
+    protected MapPatriciaTrie<Integer> createFirstTrie() {
+        return new MapPatriciaTrie<Integer>();
+    }
 }

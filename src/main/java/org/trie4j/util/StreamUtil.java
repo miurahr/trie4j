@@ -21,15 +21,15 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 public class StreamUtil {
-	public static String readAsString(InputStream is, String encoding)
-	throws UnsupportedEncodingException, IOException{
-		InputStreamReader reader = new InputStreamReader(is, encoding);
-		char[] buff = new char[65536];
-		StringBuilder ret = new StringBuilder();
-		int len;
-		while((len = reader.read(buff)) != -1){
-			ret.append(buff, 0, len);
-		}
-		return ret.toString();
-	}
+    public static String readAsString(InputStream is, String encoding)
+            throws UnsupportedEncodingException, IOException {
+        InputStreamReader reader = new InputStreamReader(is, encoding);
+        char[] buff = new char[65536];
+        StringBuilder ret = new StringBuilder();
+        int len;
+        while ((len = reader.read(buff)) != -1) {
+            ret.append(buff, 0, len);
+        }
+        return ret.toString();
+    }
 }

@@ -19,52 +19,52 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CharsCharSequenceTest {
-	@Test
-	public void test_1() throws Exception{
-		CharSequence seq = new CharsCharSequence("hello".toCharArray());
-		Assert.assertEquals('h', seq.charAt(0));
-		Assert.assertEquals('e', seq.charAt(1));
-		Assert.assertEquals('l', seq.charAt(2));
-		Assert.assertEquals('l', seq.charAt(3));
-		Assert.assertEquals('o', seq.charAt(4));
-		try{
-			seq.charAt(5);
-			Assert.fail();
-		} catch(ArrayIndexOutOfBoundsException e){
-		}
-	}
+    @Test
+    public void test_1() throws Exception {
+        CharSequence seq = new CharsCharSequence("hello".toCharArray());
+        Assert.assertEquals('h', seq.charAt(0));
+        Assert.assertEquals('e', seq.charAt(1));
+        Assert.assertEquals('l', seq.charAt(2));
+        Assert.assertEquals('l', seq.charAt(3));
+        Assert.assertEquals('o', seq.charAt(4));
+        try {
+            seq.charAt(5);
+            Assert.fail();
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
 
-	@Test
-	public void test_2() throws Exception{
-		CharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 3);
-		Assert.assertEquals('e', seq.charAt(0));
-		Assert.assertEquals('l', seq.charAt(1));
-		try{
-			seq.charAt(2);
-			Assert.fail();
-		} catch(ArrayIndexOutOfBoundsException e){
-		}
-	}
+    @Test
+    public void test_2() throws Exception {
+        CharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 3);
+        Assert.assertEquals('e', seq.charAt(0));
+        Assert.assertEquals('l', seq.charAt(1));
+        try {
+            seq.charAt(2);
+            Assert.fail();
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
 
-	@Test
-	public void test_3() throws Exception{
-		CharsCharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 3);
-		char[] a = seq.toCharArray();
-		Assert.assertEquals(2, a.length);
-		Assert.assertEquals('e', a[0]);
-		Assert.assertEquals('l', a[1]);
-	}
+    @Test
+    public void test_3() throws Exception {
+        CharsCharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 3);
+        char[] a = seq.toCharArray();
+        Assert.assertEquals(2, a.length);
+        Assert.assertEquals('e', a[0]);
+        Assert.assertEquals('l', a[1]);
+    }
 
-	@Test
-	public void test_4() throws Exception{
-		CharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 5);
-		CharSequence a = seq.subSequence(0, 2);
-		Assert.assertEquals('e', a.charAt(0));
-		Assert.assertEquals('l', a.charAt(1));
-		try{
-			a.charAt(2);
-			Assert.fail();
-		} catch(ArrayIndexOutOfBoundsException e){
-		}
-	}
+    @Test
+    public void test_4() throws Exception {
+        CharSequence seq = new CharsCharSequence("hello".toCharArray(), 1, 5);
+        CharSequence a = seq.subSequence(0, 2);
+        Assert.assertEquals('e', a.charAt(0));
+        Assert.assertEquals('l', a.charAt(1));
+        try {
+            a.charAt(2);
+            Assert.fail();
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
 }

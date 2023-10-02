@@ -17,54 +17,55 @@ package org.trie4j.patricia;
 
 import org.trie4j.MapNode;
 
-public class MapTailPatriciaTrieNodeAdapter<T> implements MapNode<T>{
-	public MapTailPatriciaTrieNodeAdapter(MapTailPatriciaTrieNode<T> node, CharSequence tails){
-		this.node = node;
-		this.tails = tails;
-	}
+public class MapTailPatriciaTrieNodeAdapter<T> implements MapNode<T> {
+    public MapTailPatriciaTrieNodeAdapter(MapTailPatriciaTrieNode<T> node, CharSequence tails) {
+        this.node = node;
+        this.tails = tails;
+    }
 
-	public MapTailPatriciaTrieNode<T> getNode() {
-		return node;
-	}
+    public MapTailPatriciaTrieNode<T> getNode() {
+        return node;
+    }
 
-	@Override
-	public MapNode<T> getChild(char c) {
-		MapTailPatriciaTrieNode<T> n = node.getChild(c);
-		if(n == null) return null;
-		else return new MapTailPatriciaTrieNodeAdapter<T>(n, tails);
-	}
+    @Override
+    public MapNode<T> getChild(char c) {
+        MapTailPatriciaTrieNode<T> n = node.getChild(c);
+        if (n == null) return null;
+        else return new MapTailPatriciaTrieNodeAdapter<T>(n, tails);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public MapNode<T>[] getChildren() {
-		TailPatriciaTrieNode[] children = node.getChildren();
-		if(children == null) return null;
-		MapNode<T>[] ret = new MapNode[children.length];
-		for(int i = 0; i < ret.length; i++){
-			ret[i] = new MapTailPatriciaTrieNodeAdapter<T>(node.getChildren()[i], tails);
-		}
-		return ret;
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public MapNode<T>[] getChildren() {
+        TailPatriciaTrieNode[] children = node.getChildren();
+        if (children == null) return null;
+        MapNode<T>[] ret = new MapNode[children.length];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = new MapTailPatriciaTrieNodeAdapter<T>(node.getChildren()[i], tails);
+        }
+        return ret;
+    }
 
-	@Override
-	public char[] getLetters() {
-		return node.getLetters(tails);
-	}
+    @Override
+    public char[] getLetters() {
+        return node.getLetters(tails);
+    }
 
-	@Override
-	public boolean isTerminate() {
-		return node.isTerminate();
-	}
+    @Override
+    public boolean isTerminate() {
+        return node.isTerminate();
+    }
 
-	@Override
-	public T getValue() {
-		return node.getValue();
-	}
+    @Override
+    public T getValue() {
+        return node.getValue();
+    }
 
-	public void setValue(T value) {
-		node.setValue(value);
-	};
+    public void setValue(T value) {
+        node.setValue(value);
+    }
+    ;
 
-	private MapTailPatriciaTrieNode<T> node;
-	private CharSequence tails;
+    private MapTailPatriciaTrieNode<T> node;
+    private CharSequence tails;
 }

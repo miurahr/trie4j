@@ -16,24 +16,23 @@
 package org.trie4j.doublearray;
 
 import java.io.OutputStreamWriter;
-
 import org.trie4j.AbstractMapTrieWikipediaTest;
 import org.trie4j.MapTrie;
 import org.trie4j.Trie;
 
-public class MapDoubleArrayWikipediaTest extends AbstractMapTrieWikipediaTest{
-	@Override
-	protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
-		return new MapDoubleArray<Integer>(firstTrie);
-	}
+public class MapDoubleArrayWikipediaTest extends AbstractMapTrieWikipediaTest {
+    @Override
+    protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
+        return new MapDoubleArray<Integer>(firstTrie);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	protected void afterVerification(Trie trie) throws Exception {
-		super.afterVerification(trie);
-		trie.dump(new OutputStreamWriter(System.out));
-		DoubleArray da = (DoubleArray)((MapDoubleArray<Integer>)trie).getTrie();
-		System.out.println("base.length: " + da.getBase().length);
-		System.out.println("term.size: " + da.getTerm().size());
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    protected void afterVerification(Trie trie) throws Exception {
+        super.afterVerification(trie);
+        trie.dump(new OutputStreamWriter(System.out));
+        DoubleArray da = (DoubleArray) ((MapDoubleArray<Integer>) trie).getTrie();
+        System.out.println("base.length: " + da.getBase().length);
+        System.out.println("term.size: " + da.getTerm().size());
+    }
 }

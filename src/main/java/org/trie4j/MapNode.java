@@ -20,7 +20,8 @@ package org.trie4j;
  * @author Takao Nakaguchi
  * @param <T> the type of value the MapNode has.
  */
-public interface MapNode<T> extends Node{
-	T getValue();
-	void setValue(T value);
+public interface MapNode<T> extends Node {
+    T getValue();
+
+    void setValue(T value);
 }

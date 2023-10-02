@@ -17,16 +17,16 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractWikipediaTest;
 import org.trie4j.Trie;
-import org.trie4j.patricia.TailPatriciaTrie;
 import org.trie4j.tail.builder.ConcatTailBuilder;
 
 public class TailPatriciaTrieWithConcatTailBuilderRebuildTrieWikipediaTest extends AbstractWikipediaTest {
-	@Override
-	protected Trie createFirstTrie() {
-		return new TailPatriciaTrie(new ConcatTailBuilder());
-	}
-	@Override
-	protected Trie buildSecondTrie(Trie first) throws Exception {
-		return new TailPatriciaTrie(first, new ConcatTailBuilder());
-	}
+    @Override
+    protected Trie createFirstTrie() {
+        return new TailPatriciaTrie(new ConcatTailBuilder());
+    }
+
+    @Override
+    protected Trie buildSecondTrie(Trie first) throws Exception {
+        return new TailPatriciaTrie(first, new ConcatTailBuilder());
+    }
 }

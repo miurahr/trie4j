@@ -16,11 +16,11 @@
 package org.trie4j.util;
 
 public class ArrayUtil {
-	public static int[] unbox(Integer[] array){
-		int[] ret = new int[array.length];
-		for(int i = 0; i < array.length; i++){
-			ret[i] = array[i];
-		}
-		return ret;
-	}
+    public static int[] unbox(Integer[] array) {
+        int[] ret = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            ret[i] = array[i];
+        }
+        return ret;
+    }
 }

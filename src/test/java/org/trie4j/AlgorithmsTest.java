@@ -20,45 +20,41 @@ import org.junit.Test;
 import org.trie4j.test.SimpleNode;
 
 public class AlgorithmsTest {
-	@Test
-	public void test_traverseByBreadth(){
-		final StringBuilder letters = new StringBuilder();
-		final StringBuilder nests = new StringBuilder();
-		Algorithms.traverseByBreadth(root, new NodeVisitor() {
-			@Override
-			public boolean visit(Node node, int nest) {
-				letters.append(node.getLetters());
-				nests.append(nest);
-				return true;
-			}
-		});
-		Assert.assertEquals("abcdefgh", letters.toString());
-		Assert.assertEquals("01112223", nests.toString());
-	}
+    @Test
+    public void test_traverseByBreadth() {
+        final StringBuilder letters = new StringBuilder();
+        final StringBuilder nests = new StringBuilder();
+        Algorithms.traverseByBreadth(root, new NodeVisitor() {
+            @Override
+            public boolean visit(Node node, int nest) {
+                letters.append(node.getLetters());
+                nests.append(nest);
+                return true;
+            }
+        });
+        Assert.assertEquals("abcdefgh", letters.toString());
+        Assert.assertEquals("01112223", nests.toString());
+    }
 
-	@Test
-	public void test_traverseByDepth(){
-		final StringBuilder letters = new StringBuilder();
-		final StringBuilder nests = new StringBuilder();
-		Algorithms.traverseByDepth(root, new NodeVisitor() {
-			@Override
-			public boolean visit(Node node, int nest) {
-				letters.append(node.getLetters());
-				nests.append(nest);
-				return true;
-			}
-		});
-		Assert.assertEquals("abefhcdg", letters.toString());
-		Assert.assertEquals("01223112", nests.toString());
-	}
+    @Test
+    public void test_traverseByDepth() {
+        final StringBuilder letters = new StringBuilder();
+        final StringBuilder nests = new StringBuilder();
+        Algorithms.traverseByDepth(root, new NodeVisitor() {
+            @Override
+            public boolean visit(Node node, int nest) {
+                letters.append(node.getLetters());
+                nests.append(nest);
+                return true;
+            }
+        });
+        Assert.assertEquals("abefhcdg", letters.toString());
+        Assert.assertEquals("01223112", nests.toString());
+    }
 
-	private Node root = new SimpleNode("a"
-			, new SimpleNode("b"
-					, new SimpleNode("e"), new SimpleNode("f"
-							, new SimpleNode("h")))
-			, new SimpleNode("c")
-			, new SimpleNode("d"
-					, new SimpleNode("g"))
-			);
-
+    private Node root = new SimpleNode(
+            "a",
+            new SimpleNode("b", new SimpleNode("e"), new SimpleNode("f", new SimpleNode("h"))),
+            new SimpleNode("c"),
+            new SimpleNode("d", new SimpleNode("g")));
 }

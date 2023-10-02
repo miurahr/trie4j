@@ -21,14 +21,12 @@ import org.trie4j.bv.BytesConstantTimeSelect0SuccinctBitVector;
 import org.trie4j.louds.bvtree.LOUDSBvTree;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class ConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaTest
-extends AbstractWikipediaTest{
-	@Override
-	protected Trie buildSecondTrie(Trie first) {
-		return new TailLOUDSTrie(
-				first,
-				new LOUDSBvTree(new BytesConstantTimeSelect0SuccinctBitVector(
-						first.nodeSize() * 2)),
-				new ConcatTailArrayBuilder(first.size()));
-	}
+public class ConstantTimeSelect0TailLOUDSTrieWithConcatTailArrayWikipediaTest extends AbstractWikipediaTest {
+    @Override
+    protected Trie buildSecondTrie(Trie first) {
+        return new TailLOUDSTrie(
+                first,
+                new LOUDSBvTree(new BytesConstantTimeSelect0SuccinctBitVector(first.nodeSize() * 2)),
+                new ConcatTailArrayBuilder(first.size()));
+    }
 }

@@ -19,9 +19,9 @@ import org.trie4j.AbstractWikipediaTest;
 import org.trie4j.Trie;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class TailDoubleArrayWithConcatTailBuilderWikipediaTest extends AbstractWikipediaTest{
-	@Override
-	protected Trie buildSecondTrie(Trie first) {
-		return new TailDoubleArray(first, new ConcatTailArrayBuilder());
-	}
+public class TailDoubleArrayWithConcatTailBuilderWikipediaTest extends AbstractWikipediaTest {
+    @Override
+    protected Trie buildSecondTrie(Trie first) {
+        return new TailDoubleArray(first, new ConcatTailArrayBuilder());
+    }
 }

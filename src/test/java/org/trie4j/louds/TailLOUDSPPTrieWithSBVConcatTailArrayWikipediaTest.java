@@ -20,12 +20,10 @@ import org.trie4j.Trie;
 import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SBVConcatTailArrayBuilder;
 
-public class TailLOUDSPPTrieWithSBVConcatTailArrayWikipediaTest extends AbstractWikipediaTest{
-	@Override
-	protected Trie buildSecondTrie(Trie first) {
-		return new TailLOUDSTrie(
-				first,
-				new LOUDSPPBvTree(first.nodeSize()),
-				new SBVConcatTailArrayBuilder(first.size()));
-	}
+public class TailLOUDSPPTrieWithSBVConcatTailArrayWikipediaTest extends AbstractWikipediaTest {
+    @Override
+    protected Trie buildSecondTrie(Trie first) {
+        return new TailLOUDSTrie(
+                first, new LOUDSPPBvTree(first.nodeSize()), new SBVConcatTailArrayBuilder(first.size()));
+    }
 }

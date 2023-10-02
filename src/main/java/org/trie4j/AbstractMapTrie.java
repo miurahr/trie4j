@@ -13,30 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.trie4j;
 
 import java.util.Map;
-
 import org.trie4j.util.IterableAdapter;
 
-public abstract class AbstractMapTrie<T> extends AbstractTrie implements MapTrie<T>{
-	private class StringIterableAdapter extends IterableAdapter<Map.Entry<String, T>, String>{
-		public StringIterableAdapter(Iterable<Map.Entry<String, T>> iterable) {
-			super(iterable);
-		}
-		@Override
-		protected String convert(Map.Entry<String, T> value) {
-			return value.getKey();
-		}
-	}
+public abstract class AbstractMapTrie<T> extends AbstractTrie implements MapTrie<T> {
+    private class StringIterableAdapter extends IterableAdapter<Map.Entry<String, T>, String> {
+        public StringIterableAdapter(Iterable<Map.Entry<String, T>> iterable) {
+            super(iterable);
+        }
 
-	@Override
-	public Iterable<String> commonPrefixSearch(String query) {
-		return new StringIterableAdapter(commonPrefixSearchEntries(query));
-	}
+        @Override
+        protected String convert(Map.Entry<String, T> value) {
+            return value.getKey();
+        }
+    }
 
-	@Override
-	public Iterable<String> predictiveSearch(String prefix) {
-		return new StringIterableAdapter(predictiveSearchEntries(prefix));
-	}
+    @Override
+    public Iterable<String> commonPrefixSearch(String query) {
+        return new StringIterableAdapter(commonPrefixSearchEntries(query));
+    }
+
+    @Override
+    public Iterable<String> predictiveSearch(String prefix) {
+        return new StringIterableAdapter(predictiveSearchEntries(prefix));
+    }
 }

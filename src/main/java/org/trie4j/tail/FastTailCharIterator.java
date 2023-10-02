@@ -15,32 +15,33 @@
  */
 package org.trie4j.tail;
 
-public class FastTailCharIterator{
-	public FastTailCharIterator(CharSequence chars, int index){
-		this.chars = chars;
-		setIndex(index);
-	}
+public class FastTailCharIterator {
+    public FastTailCharIterator(CharSequence chars, int index) {
+        this.chars = chars;
+        setIndex(index);
+    }
 
-	public void setIndex(int index){
-		this.index = index;
-	}
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
-	public char getNext(){
-		if(index == chars.length()) return '\0';
-		char ret = chars.charAt(index);
-		if(ret <= '\1'){
-			if(ret == '\0'){
-				return ret;
-			} else{
-				int i = chars.charAt(index + 1);
-				i += chars.charAt(index + 2) << 16;
-				index = i;
-				ret = chars.charAt(index);
-			}
-		}
-		index++;
-		return ret;
-	}
-	private CharSequence chars;
-	private int index;
+    public char getNext() {
+        if (index == chars.length()) return '\0';
+        char ret = chars.charAt(index);
+        if (ret <= '\1') {
+            if (ret == '\0') {
+                return ret;
+            } else {
+                int i = chars.charAt(index + 1);
+                i += chars.charAt(index + 2) << 16;
+                index = i;
+                ret = chars.charAt(index);
+            }
+        }
+        index++;
+        return ret;
+    }
+
+    private CharSequence chars;
+    private int index;
 }

@@ -18,9 +18,8 @@ package org.trie4j.setAndMap;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TreeSetWikipediaSerializeTest
-extends AbstractSetWikipediaSerializeTest{
-	protected Set<String> set(){
-		return new TreeSet<String>();
-	}
+public class TreeSetWikipediaSerializeTest extends AbstractSetWikipediaSerializeTest {
+    protected Set<String> set() {
+        return new TreeSet<String>();
+    }
 }

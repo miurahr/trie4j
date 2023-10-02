@@ -16,8 +16,11 @@
 package org.trie4j.tail.index;
 
 public interface TailIndexBuilder {
-	void add(int nodeId, int start, int end);
-	void addEmpty(int nodeId);
-	void trimToSize();
-	TailIndex build();
+    void add(int nodeId, int start, int end);
+
+    void addEmpty(int nodeId);
+
+    void trimToSize();
+
+    TailIndex build();
 }

@@ -18,9 +18,8 @@ package org.trie4j.setAndMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class HashSetWikipediaSerializeTest
-extends AbstractSetWikipediaSerializeTest{
-	protected Set<String> set(){
-		return new HashSet<String>();
-	}
+public class HashSetWikipediaSerializeTest extends AbstractSetWikipediaSerializeTest {
+    protected Set<String> set() {
+        return new HashSet<String>();
+    }
 }

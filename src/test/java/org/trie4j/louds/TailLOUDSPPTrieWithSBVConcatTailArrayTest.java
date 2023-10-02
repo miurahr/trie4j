@@ -20,13 +20,9 @@ import org.trie4j.Trie;
 import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SBVConcatTailArrayBuilder;
 
-public class TailLOUDSPPTrieWithSBVConcatTailArrayTest
-extends AbstractTermIdTrieTest<TailLOUDSTrie>{
-	@Override
-	protected TailLOUDSTrie buildSecond(Trie firstTrie) {
-		return new TailLOUDSTrie(
-				firstTrie,
-				new LOUDSPPBvTree(firstTrie.nodeSize()),
-				new SBVConcatTailArrayBuilder());
-	}
+public class TailLOUDSPPTrieWithSBVConcatTailArrayTest extends AbstractTermIdTrieTest<TailLOUDSTrie> {
+    @Override
+    protected TailLOUDSTrie buildSecond(Trie firstTrie) {
+        return new TailLOUDSTrie(firstTrie, new LOUDSPPBvTree(firstTrie.nodeSize()), new SBVConcatTailArrayBuilder());
+    }
 }

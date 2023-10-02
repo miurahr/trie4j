@@ -19,60 +19,56 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import org.trie4j.tail.index.TailIndex;
 
-public class DefaultTailArray
-implements Externalizable, TailArray{
-	public DefaultTailArray() {
-	}
+public class DefaultTailArray implements Externalizable, TailArray {
+    public DefaultTailArray() {}
 
-	public DefaultTailArray(CharSequence tail, TailIndex tailIndex){
-		this.tail = tail;
-		this.tailIndex = tailIndex;
-	}
+    public DefaultTailArray(CharSequence tail, TailIndex tailIndex) {
+        this.tail = tail;
+        this.tailIndex = tailIndex;
+    }
 
-	public CharSequence getTail() {
-		return tail;
-	}
+    public CharSequence getTail() {
+        return tail;
+    }
 
-	public TailIndex getTailIndex() {
-		return tailIndex;
-	}
+    public TailIndex getTailIndex() {
+        return tailIndex;
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws IOException, ClassNotFoundException {
-		tail = (CharSequence)in.readObject();
-		tailIndex = (TailIndex)in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        tail = (CharSequence) in.readObject();
+        tailIndex = (TailIndex) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(tail);
-		out.writeObject(tailIndex);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(tail);
+        out.writeObject(tailIndex);
+    }
 
-	public TailCharIterator newIterator(int offset){
-		return new TailCharIterator(tail, offset);
-	}
+    public TailCharIterator newIterator(int offset) {
+        return new TailCharIterator(tail, offset);
+    }
 
-	public TailCharIterator newIterator(){
-		return new TailCharIterator(tail, -1);
-	}
+    public TailCharIterator newIterator() {
+        return new TailCharIterator(tail, -1);
+    }
 
-	public int getIteratorOffset(int nodeId){
-		if(tailIndex.size() <= nodeId) return -1;
-		return tailIndex.get(nodeId);
-	}
+    public int getIteratorOffset(int nodeId) {
+        if (tailIndex.size() <= nodeId) return -1;
+        return tailIndex.get(nodeId);
+    }
 
-	public void getChars(StringBuilder builder, int nodeId){
-		if(tailIndex.size() <= nodeId) return;
-		int offset = tailIndex.get(nodeId);
-		if(offset == -1) return;
-		TailUtil.appendChars(tail, offset, builder);
-	}
+    public void getChars(StringBuilder builder, int nodeId) {
+        if (tailIndex.size() <= nodeId) return;
+        int offset = tailIndex.get(nodeId);
+        if (offset == -1) return;
+        TailUtil.appendChars(tail, offset, builder);
+    }
 
-	private CharSequence tail;
-	private TailIndex tailIndex;
+    private CharSequence tail;
+    private TailIndex tailIndex;
 }

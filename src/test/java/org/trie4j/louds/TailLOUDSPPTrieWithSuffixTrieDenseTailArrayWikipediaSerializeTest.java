@@ -20,13 +20,10 @@ import org.trie4j.Trie;
 import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
-public class TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie firstTrie) {
-		return new TailLOUDSTrie(
-				firstTrie,
-				new LOUDSPPBvTree(firstTrie.nodeSize()),
-				new SuffixTrieDenseTailArrayBuilder());
-	}
+public class TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie firstTrie) {
+        return new TailLOUDSTrie(
+                firstTrie, new LOUDSPPBvTree(firstTrie.nodeSize()), new SuffixTrieDenseTailArrayBuilder());
+    }
 }

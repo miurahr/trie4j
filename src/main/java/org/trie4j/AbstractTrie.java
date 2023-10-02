@@ -19,69 +19,68 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
 
-public abstract class AbstractTrie implements Trie{
+public abstract class AbstractTrie implements Trie {
 
+    @Override
+    public int findShortestWord(CharSequence chars, int start, int end, StringBuilder word) {
+        for (int i = start; i < end; i++) {
+            Iterator<String> it =
+                    commonPrefixSearch(chars.subSequence(i, end).toString()).iterator();
+            // *
+            if (it.hasNext()) {
+                if (word != null) word.append(it.next());
+                return i;
+            }
+            /*/
+            			int len = Integer.MIN_VALUE;
+            			String ret = null;
+            			while(it.hasNext()){
+            				String w = it.next();
+            				if(w.length() > len){
+            					ret = w;
+            					len = w.length();
+            				}
+            			}
+            			if(ret != null){
+            				word.append(ret);
+            				return i;
+            			}
+            //*/
+        }
+        return -1;
+    }
 
-	@Override
-	public int findShortestWord(CharSequence chars, int start, int end, StringBuilder word) {
-		for(int i = start; i < end; i++){
-			Iterator<String> it = commonPrefixSearch(chars.subSequence(i, end).toString()).iterator();
-//*
-			if(it.hasNext()){
-				if(word != null) word.append(it.next());
-				return i;
-			}
-/*/
-			int len = Integer.MIN_VALUE;
-			String ret = null;
-			while(it.hasNext()){
-				String w = it.next();
-				if(w.length() > len){
-					ret = w;
-					len = w.length();
-				}
-			}
-			if(ret != null){
-				word.append(ret);
-				return i;
-			}
-//*/
-		}
-		return -1;
-	}
+    @Override
+    public int findLongestWord(CharSequence chars, int start, int end, StringBuilder word) {
+        for (int i = start; i < end; i++) {
+            Iterator<String> it =
+                    commonPrefixSearch(chars.subSequence(i, end).toString()).iterator();
+            String last = null;
+            while (it.hasNext()) {
+                last = it.next();
+            }
+            if (last != null) {
+                if (word != null) word.append(last);
+                return i;
+            }
+        }
+        return -1;
+    }
 
-	@Override
-	public int findLongestWord(CharSequence chars, int start, int end, StringBuilder word) {
-		for(int i = start; i < end; i++){
-			Iterator<String> it = commonPrefixSearch(chars.subSequence(i, end).toString()).iterator();
-			String last = null;
-			while(it.hasNext()){
-				last = it.next();
-			}
-			if(last != null){
-				if(word != null) word.append(last);
-				return i;
-			}
-		}
-		return -1;
-	}
+    @Override
+    public void dump(Writer writer) throws IOException {
+        writer.write("-- dump " + getClass().getName() + " --\n");
+        Algorithms.dump(getRoot(), writer);
+    }
 
-	@Override
-	public void dump(Writer writer) throws IOException{
-		writer.write("-- dump " + getClass().getName() + " --\n");
-		Algorithms.dump(getRoot(), writer);
-	}
+    @Override
+    public void trimToSize() {}
 
-	@Override
-	public void trimToSize() {
-	}
+    @Override
+    public void freeze() {}
 
-	@Override
-	public void freeze() {
-	}
-
-	@Override
-	public void insert(String word) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void insert(String word) {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -16,9 +16,13 @@
 package org.trie4j.bv;
 
 public interface SuccinctBitVector extends BitVector {
-	int select0(int count);
-	int next0(int count);
-	int select1(int count);
-	int rank0(int pos);
-	int rank1(int pos);
+    int select0(int count);
+
+    int next0(int count);
+
+    int select1(int count);
+
+    int rank0(int pos);
+
+    int rank1(int pos);
 }

@@ -18,10 +18,9 @@ package org.trie4j.doublearray;
 import org.trie4j.AbstractMapTrieWikipediaSerializeTest;
 import org.trie4j.MapTrie;
 
-public class MapDoubleArrayWikipediaSerializeTest
-extends AbstractMapTrieWikipediaSerializeTest{
-	@Override
-	protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
-		return new MapDoubleArray<Integer>(firstTrie);
-	}
+public class MapDoubleArrayWikipediaSerializeTest extends AbstractMapTrieWikipediaSerializeTest {
+    @Override
+    protected MapTrie<Integer> buildSecondTrie(MapTrie<Integer> firstTrie) {
+        return new MapDoubleArray<Integer>(firstTrie);
+    }
 }

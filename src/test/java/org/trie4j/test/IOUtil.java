@@ -21,16 +21,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class IOUtil {
-	public static String readLine(String path)
-	throws FileNotFoundException, IOException{
-		InputStream is = new FileInputStream(path);
-		try{
-			byte line[] = new byte[1026];
-			int n = is.read(line);
-			if(n == -1) throw new IOException("failed to read " + path);
-			return new String(line, 0, n, "UTF-8");
-		} finally{
-			is.close();
-		}
-	}
+    public static String readLine(String path) throws FileNotFoundException, IOException {
+        InputStream is = new FileInputStream(path);
+        try {
+            byte line[] = new byte[1026];
+            int n = is.read(line);
+            if (n == -1) throw new IOException("failed to read " + path);
+            return new String(line, 0, n, "UTF-8");
+        } finally {
+            is.close();
+        }
+    }
 }

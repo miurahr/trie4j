@@ -16,19 +16,19 @@
 package org.trie4j.doublearray;
 
 import java.io.OutputStreamWriter;
-
 import org.trie4j.AbstractWikipediaTest;
 import org.trie4j.Trie;
 
-public class DoubleArrayWikipediaTest extends AbstractWikipediaTest{
-	protected Trie buildSecondTrie(Trie first) {
-		return new DoubleArray(first);
-	}
-	@Override
-	protected void afterVerification(Trie trie) throws Exception {
-		super.afterVerification(trie);
-		((DoubleArray)trie).dump(new OutputStreamWriter(System.out));
-		System.out.println("base.length: " + ((DoubleArray)trie).getBase().length);
-		System.out.println("term.size: " + ((DoubleArray)trie).getTerm().size());
-	}
+public class DoubleArrayWikipediaTest extends AbstractWikipediaTest {
+    protected Trie buildSecondTrie(Trie first) {
+        return new DoubleArray(first);
+    }
+
+    @Override
+    protected void afterVerification(Trie trie) throws Exception {
+        super.afterVerification(trie);
+        ((DoubleArray) trie).dump(new OutputStreamWriter(System.out));
+        System.out.println("base.length: " + ((DoubleArray) trie).getBase().length);
+        System.out.println("term.size: " + ((DoubleArray) trie).getTerm().size());
+    }
 }

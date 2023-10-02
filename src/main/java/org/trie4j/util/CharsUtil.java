@@ -16,14 +16,14 @@
 package org.trie4j.util;
 
 public class CharsUtil {
-	public static char[] emptyChars = {};
+    public static char[] emptyChars = {};
 
-	public static char[] revert(char[] values){
-		int n = values.length;
-		char[] ret = new char[n];
-		for(int i = 0; i < n; i++){
-			ret[n - i - 1] = values[i];
-		}
-		return ret;
-	}
+    public static char[] revert(char[] values) {
+        int n = values.length;
+        char[] ret = new char[n];
+        for (int i = 0; i < n; i++) {
+            ret[n - i - 1] = values[i];
+        }
+        return ret;
+    }
 }

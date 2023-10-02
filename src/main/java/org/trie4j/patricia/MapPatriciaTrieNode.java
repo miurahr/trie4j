@@ -17,73 +17,73 @@ package org.trie4j.patricia;
 
 import java.io.Serializable;
 
-public class MapPatriciaTrieNode<T>
-extends PatriciaTrieNode
-implements Serializable, org.trie4j.MapNode<T>{
-	public MapPatriciaTrieNode() {
-		super(new char[]{}, false, emptyChildren);
-	}
+public class MapPatriciaTrieNode<T> extends PatriciaTrieNode implements Serializable, org.trie4j.MapNode<T> {
+    public MapPatriciaTrieNode() {
+        super(new char[] {}, false, emptyChildren);
+    }
 
-	public MapPatriciaTrieNode(char[] letters, boolean terminated) {
-		super(letters, terminated, emptyChildren);
-	}
+    public MapPatriciaTrieNode(char[] letters, boolean terminated) {
+        super(letters, terminated, emptyChildren);
+    }
 
-	public MapPatriciaTrieNode(char[] letters, boolean terminated, T value) {
-		super(letters, terminated, emptyChildren);
-		this.value = value;
-	}
+    public MapPatriciaTrieNode(char[] letters, boolean terminated, T value) {
+        super(letters, terminated, emptyChildren);
+        this.value = value;
+    }
 
-	public MapPatriciaTrieNode(char[] letters, boolean terminated, MapPatriciaTrieNode<T>[] children) {
-		super(letters, terminated, children);
-	}
-	
-	public MapPatriciaTrieNode(char[] letters, boolean terminated, MapPatriciaTrieNode<T>[] children, T value) {
-		super(letters, terminated, children);
-		this.value = value;
-	}
-	
-	public T getValue(){
-		return value;
-	}
+    public MapPatriciaTrieNode(char[] letters, boolean terminated, MapPatriciaTrieNode<T>[] children) {
+        super(letters, terminated, children);
+    }
 
-	public void setValue(T value){
-		this.value = value;
-	}
+    public MapPatriciaTrieNode(char[] letters, boolean terminated, MapPatriciaTrieNode<T>[] children, T value) {
+        super(letters, terminated, children);
+        this.value = value;
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public MapPatriciaTrieNode<T> getChild(char c) {
-		return (MapPatriciaTrieNode<T>)super.getChild(c);
-	}
+    public T getValue() {
+        return value;
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public MapPatriciaTrieNode<T>[] getChildren() {
-		return (MapPatriciaTrieNode<T>[])super.getChildren();
-	}
+    public void setValue(T value) {
+        this.value = value;
+    }
 
-	@Override
-	public void setChildren(PatriciaTrieNode[] children) {
-		super.setChildren(children);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public MapPatriciaTrieNode<T> getChild(char c) {
+        return (MapPatriciaTrieNode<T>) super.getChild(c);
+    }
 
-	public void setChildren(MapPatriciaTrieNode<T>[] children) {
-		super.setChildren(children);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public MapPatriciaTrieNode<T>[] getChildren() {
+        return (MapPatriciaTrieNode<T>[]) super.getChildren();
+    }
 
-	@Override
-	@SuppressWarnings("rawtypes")
-	public PatriciaTrieNode addChild(int index, PatriciaTrieNode n){
-		MapPatriciaTrieNode[] newc = new MapPatriciaTrieNode[getChildren().length + 1];
-		System.arraycopy(getChildren(), 0, newc, 0, index);
-		newc[index] = (MapPatriciaTrieNode)n;
-		System.arraycopy(getChildren(), index, newc, index + 1, getChildren().length - index);
-		super.setChildren(newc);
-		return this;
-	}
+    @Override
+    public void setChildren(PatriciaTrieNode[] children) {
+        super.setChildren(children);
+    }
 
-	private T value;
-	@SuppressWarnings("rawtypes")
-	private static MapPatriciaTrieNode[] emptyChildren = {};
-	private static final long serialVersionUID = 8611758181642617230L;
+    public void setChildren(MapPatriciaTrieNode<T>[] children) {
+        super.setChildren(children);
+    }
+
+    @Override
+    @SuppressWarnings("rawtypes")
+    public PatriciaTrieNode addChild(int index, PatriciaTrieNode n) {
+        MapPatriciaTrieNode[] newc = new MapPatriciaTrieNode[getChildren().length + 1];
+        System.arraycopy(getChildren(), 0, newc, 0, index);
+        newc[index] = (MapPatriciaTrieNode) n;
+        System.arraycopy(getChildren(), index, newc, index + 1, getChildren().length - index);
+        super.setChildren(newc);
+        return this;
+    }
+
+    private T value;
+
+    @SuppressWarnings("rawtypes")
+    private static MapPatriciaTrieNode[] emptyChildren = {};
+
+    private static final long serialVersionUID = 8611758181642617230L;
 }

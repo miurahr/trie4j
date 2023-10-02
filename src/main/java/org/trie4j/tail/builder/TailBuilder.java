@@ -16,9 +16,13 @@
 package org.trie4j.tail.builder;
 
 public interface TailBuilder {
-	int insert(CharSequence letters);
-	int insert(CharSequence letters, int offset, int len);
-	int insert(char[] letters);
-	int insert(char[] letters, int offset, int len);
-	CharSequence getTails();
+    int insert(CharSequence letters);
+
+    int insert(CharSequence letters, int offset, int len);
+
+    int insert(char[] letters);
+
+    int insert(char[] letters, int offset, int len);
+
+    CharSequence getTails();
 }

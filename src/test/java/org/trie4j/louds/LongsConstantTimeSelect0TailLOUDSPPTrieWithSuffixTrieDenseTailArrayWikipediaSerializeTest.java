@@ -23,17 +23,15 @@ import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.SuffixTrieDenseTailArrayBuilder;
 
 public class LongsConstantTimeSelect0TailLOUDSPPTrieWithSuffixTrieDenseTailArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie firstTrie) {
-		Trie t = new TailLOUDSTrie(
-				firstTrie,
-				new LOUDSPPBvTree(
-						new LongsRank0OnlySuccinctBitVector(),
-						new LongsConstantTimeSelect0SuccinctBitVector()
-				),
-				new SuffixTrieDenseTailArrayBuilder());
-		t.trimToSize();
-		return t;
-	}
+        extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie firstTrie) {
+        Trie t = new TailLOUDSTrie(
+                firstTrie,
+                new LOUDSPPBvTree(
+                        new LongsRank0OnlySuccinctBitVector(), new LongsConstantTimeSelect0SuccinctBitVector()),
+                new SuffixTrieDenseTailArrayBuilder());
+        t.trimToSize();
+        return t;
+    }
 }

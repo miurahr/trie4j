@@ -19,16 +19,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ConcatTailArrayTest {
-	@Test
-	public void test_tailtrie_1() throws Exception{
-		TailArrayBuilder tab = new ConcatTailArrayBuilder(0);
-		tab.append(0, "hello", 0, 5);
-		tab.append(1, "mello", 0, 5);
-		TailArray ta = tab.build();
-		TailCharIterator it = ta.newIterator();
-		it.setOffset(ta.getIteratorOffset(0));
-		Assert.assertEquals("hello", TailUtil.readAll(it));
-		it.setOffset(ta.getIteratorOffset(1));
-		Assert.assertEquals("mello", TailUtil.readAll(it));
-	}
+    @Test
+    public void test_tailtrie_1() throws Exception {
+        TailArrayBuilder tab = new ConcatTailArrayBuilder(0);
+        tab.append(0, "hello", 0, 5);
+        tab.append(1, "mello", 0, 5);
+        TailArray ta = tab.build();
+        TailCharIterator it = ta.newIterator();
+        it.setOffset(ta.getIteratorOffset(0));
+        Assert.assertEquals("hello", TailUtil.readAll(it));
+        it.setOffset(ta.getIteratorOffset(1));
+        Assert.assertEquals("mello", TailUtil.readAll(it));
+    }
 }

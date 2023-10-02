@@ -19,44 +19,44 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class DenseArrayTailIndexTest {
-	@Test
-	public void test() throws Exception{
-		TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
-		tib.add(0, 0, 10);
-		tib.add(1, 10, 15);
-		TailIndex ti = tib.build();
-		Assert.assertEquals(0, ti.get(0));
-		Assert.assertEquals(10, ti.get(1));
-	}
+    @Test
+    public void test() throws Exception {
+        TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
+        tib.add(0, 0, 10);
+        tib.add(1, 10, 15);
+        TailIndex ti = tib.build();
+        Assert.assertEquals(0, ti.get(0));
+        Assert.assertEquals(10, ti.get(1));
+    }
 
-	@Test
-	public void test2() throws Exception{
-		TailIndex ti = new DenseArrayTailIndex();
-		Assert.assertEquals(-1, ti.get(0));
-	}
+    @Test
+    public void test2() throws Exception {
+        TailIndex ti = new DenseArrayTailIndex();
+        Assert.assertEquals(-1, ti.get(0));
+    }
 
-	@Test
-	public void test3() throws Exception{
-		TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
-		tib.add(0, 0, 10);
-		tib.add(1, -1, -1);
-		tib.add(2, 10, 15);
-		TailIndex ti = tib.build();
-		Assert.assertEquals(0, ti.get(0));
-		Assert.assertEquals(-1, ti.get(1));
-		Assert.assertEquals(10, ti.get(2));
-	}
+    @Test
+    public void test3() throws Exception {
+        TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
+        tib.add(0, 0, 10);
+        tib.add(1, -1, -1);
+        tib.add(2, 10, 15);
+        TailIndex ti = tib.build();
+        Assert.assertEquals(0, ti.get(0));
+        Assert.assertEquals(-1, ti.get(1));
+        Assert.assertEquals(10, ti.get(2));
+    }
 
-	@Test
-	public void test4() throws Exception{
-		TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
-		tib.add(0, 0, 10);
-		tib.addEmpty(1);
-		tib.add(2, 11, 14);
-		tib.add(3, 15, 16);
-		TailIndex ti = tib.build();
-		Assert.assertEquals(0, ti.get(0));
-		Assert.assertEquals(11, ti.get(2));
-		Assert.assertEquals(15, ti.get(3));
-	}
+    @Test
+    public void test4() throws Exception {
+        TailIndexBuilder tib = new DenseArrayTailIndexBuilder();
+        tib.add(0, 0, 10);
+        tib.addEmpty(1);
+        tib.add(2, 11, 14);
+        tib.add(3, 15, 16);
+        TailIndex ti = tib.build();
+        Assert.assertEquals(0, ti.get(0));
+        Assert.assertEquals(11, ti.get(2));
+        Assert.assertEquals(15, ti.get(3));
+    }
 }

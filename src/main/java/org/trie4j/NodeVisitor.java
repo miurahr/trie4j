@@ -16,5 +16,5 @@
 package org.trie4j;
 
 public interface NodeVisitor {
-	boolean visit(Node node, int nest);
+    boolean visit(Node node, int nest);
 }

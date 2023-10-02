@@ -20,23 +20,20 @@ import org.trie4j.tail.builder.TailBuilder;
 import org.trie4j.tail.index.ArrayTailIndexBuilder;
 import org.trie4j.tail.index.TailIndexBuilder;
 
-public class SuffixTrieTailArray
-extends AbstractTailArrayBuilder
-implements TailArrayBuilder{
-	public SuffixTrieTailArray() {
-	}
+public class SuffixTrieTailArray extends AbstractTailArrayBuilder implements TailArrayBuilder {
+    public SuffixTrieTailArray() {}
 
-	public SuffixTrieTailArray(int initialCapacity) {
-		super(initialCapacity);
-	}
+    public SuffixTrieTailArray(int initialCapacity) {
+        super(initialCapacity);
+    }
 
-	@Override
-	protected TailBuilder newTailBuilder(StringBuilder tails) {
-		return new SuffixTrieTailBuilder(tails);
-	}
+    @Override
+    protected TailBuilder newTailBuilder(StringBuilder tails) {
+        return new SuffixTrieTailBuilder(tails);
+    }
 
-	@Override
-	protected TailIndexBuilder newTailIndexBuilder(int initialCapacity) {
-		return new ArrayTailIndexBuilder(initialCapacity);
-	}
+    @Override
+    protected TailIndexBuilder newTailIndexBuilder(int initialCapacity) {
+        return new ArrayTailIndexBuilder(initialCapacity);
+    }
 }

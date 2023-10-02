@@ -18,67 +18,76 @@ package org.trie4j.bv;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LongsConstantTimeSelect0SuccinctBitVectorTest extends AbstractSuccinctBitVectorTest{
-	protected SuccinctBitVector create(){
-		return new LongsConstantTimeSelect0SuccinctBitVector();
-	}
+public class LongsConstantTimeSelect0SuccinctBitVectorTest extends AbstractSuccinctBitVectorTest {
+    protected SuccinctBitVector create() {
+        return new LongsConstantTimeSelect0SuccinctBitVector();
+    }
 
-	protected SuccinctBitVector create(int initialCapacity){
-		return new LongsConstantTimeSelect0SuccinctBitVector(initialCapacity);
-	}
+    protected SuccinctBitVector create(int initialCapacity) {
+        return new LongsConstantTimeSelect0SuccinctBitVector(initialCapacity);
+    }
 
-	protected SuccinctBitVector create(byte[] bytes, int bitsSize){
-		return new LongsConstantTimeSelect0SuccinctBitVector(bytes, bitsSize);
-	}
+    protected SuccinctBitVector create(byte[] bytes, int bitsSize) {
+        return new LongsConstantTimeSelect0SuccinctBitVector(bytes, bitsSize);
+    }
 
-	@Test
-	public void test_longsSize() throws Exception{
-		Assert.assertEquals(0, new LongsConstantTimeSelect0SuccinctBitVector(0).getLongs().length);
-		Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(1).getLongs().length);
-		Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(64).getLongs().length);
-		Assert.assertEquals(2, new LongsConstantTimeSelect0SuccinctBitVector(65).getLongs().length);
-	}
+    @Test
+    public void test_longsSize() throws Exception {
+        Assert.assertEquals(0, new LongsConstantTimeSelect0SuccinctBitVector(0).getLongs().length);
+        Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(1).getLongs().length);
+        Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(64).getLongs().length);
+        Assert.assertEquals(2, new LongsConstantTimeSelect0SuccinctBitVector(65).getLongs().length);
+    }
 
-	@Test
-	public void test_count0CacheSize() throws Exception{
-		Assert.assertEquals(0, new LongsConstantTimeSelect0SuccinctBitVector(0).getCountCache0().length);
-		Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(1).getCountCache0().length);
-		Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(64).getCountCache0().length);
-		Assert.assertEquals(2, new LongsConstantTimeSelect0SuccinctBitVector(
-				LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0 + 1).getCountCache0().length);
-	}
+    @Test
+    public void test_count0CacheSize() throws Exception {
+        Assert.assertEquals(0, new LongsConstantTimeSelect0SuccinctBitVector(0).getCountCache0().length);
+        Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(1).getCountCache0().length);
+        Assert.assertEquals(1, new LongsConstantTimeSelect0SuccinctBitVector(64).getCountCache0().length);
+        Assert.assertEquals(
+                2,
+                new LongsConstantTimeSelect0SuccinctBitVector(
+                                LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0 + 1)
+                        .getCountCache0()
+                        .length);
+    }
 
-	@Test
-	public void test_append_countCache0_1() throws Exception{
-		LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
-		for(int i = 0; i < LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0; i++){
-			sbv.append0();
-			Assert.assertEquals(i + 1, sbv.getCountCache0()[0]);
-		}
-		for(int i = 0; i < LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0; i++){
-			sbv.append0();
-			Assert.assertEquals(LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0, sbv.getCountCache0()[0]);
-			Assert.assertEquals(LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0 + i + 1, sbv.getCountCache0()[1]);
-		}
-	}
+    @Test
+    public void test_append_countCache0_1() throws Exception {
+        LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
+        for (int i = 0; i < LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0; i++) {
+            sbv.append0();
+            Assert.assertEquals(i + 1, sbv.getCountCache0()[0]);
+        }
+        for (int i = 0; i < LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0; i++) {
+            sbv.append0();
+            Assert.assertEquals(LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0, sbv.getCountCache0()[0]);
+            Assert.assertEquals(
+                    LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0 + i + 1, sbv.getCountCache0()[1]);
+        }
+    }
 
-	@Test
-	public void test_append_countCache0_2() throws Exception{
-		LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
-		for(int i = 0; i < 10000; i++){
-			sbv.append0();
-			Assert.assertEquals(i + 1, sbv.getCountCache0()[i / LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0]);
-		}
-	}
+    @Test
+    public void test_append_countCache0_2() throws Exception {
+        LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
+        for (int i = 0; i < 10000; i++) {
+            sbv.append0();
+            Assert.assertEquals(
+                    i + 1, sbv.getCountCache0()[i / LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0]);
+        }
+    }
 
-	@Test
-	public void test_append_countCache0_3() throws Exception{
-		LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
-		for(int i = 0; i < 10000; i++){
-			sbv.append0();
-			sbv.append1();
-			String msg = i + "th";
-			Assert.assertEquals(msg, i + 1, sbv.getCountCache0()[i * 2 / LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0]);
-		}
-	}
+    @Test
+    public void test_append_countCache0_3() throws Exception {
+        LongsConstantTimeSelect0SuccinctBitVector sbv = new LongsConstantTimeSelect0SuccinctBitVector();
+        for (int i = 0; i < 10000; i++) {
+            sbv.append0();
+            sbv.append1();
+            String msg = i + "th";
+            Assert.assertEquals(
+                    msg,
+                    i + 1,
+                    sbv.getCountCache0()[i * 2 / LongsConstantTimeSelect0SuccinctBitVector.BITS_IN_COUNTCACHE0]);
+        }
+    }
 }

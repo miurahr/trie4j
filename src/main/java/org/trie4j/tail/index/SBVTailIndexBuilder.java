@@ -19,63 +19,60 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import org.trie4j.util.FastBitSet;
 
-public class SBVTailIndexBuilder
-implements Externalizable, TailIndexBuilder{
-	public SBVTailIndexBuilder() {
-		bs = new FastBitSet();
-	}
+public class SBVTailIndexBuilder implements Externalizable, TailIndexBuilder {
+    public SBVTailIndexBuilder() {
+        bs = new FastBitSet();
+    }
 
-	public SBVTailIndexBuilder(int initialCapacity) {
-		bs = new FastBitSet(initialCapacity);
-	}
+    public SBVTailIndexBuilder(int initialCapacity) {
+        bs = new FastBitSet(initialCapacity);
+    }
 
-	@Override
-	public void add(int nodeId, int start, int end) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a strictly increasing.");
-		}
-		int index = bs.size();
-		for(int i = start; i < end; i++){
-			bs.set(index++);
-		}
-		bs.unsetIfLE(index);
-		current++;
-	}
+    @Override
+    public void add(int nodeId, int start, int end) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a strictly increasing.");
+        }
+        int index = bs.size();
+        for (int i = start; i < end; i++) {
+            bs.set(index++);
+        }
+        bs.unsetIfLE(index);
+        current++;
+    }
 
-	@Override
-	public void addEmpty(int nodeId) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a strictly increasing.");
-		}
-		bs.unsetIfLE(bs.size());
-		current++;
-	}
+    @Override
+    public void addEmpty(int nodeId) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a strictly increasing.");
+        }
+        bs.unsetIfLE(bs.size());
+        current++;
+    }
 
-	@Override
-	public void trimToSize() {
-		bs.trimToSize();
-	}
+    @Override
+    public void trimToSize() {
+        bs.trimToSize();
+    }
 
-	@Override
-	public TailIndex build() {
-		return new SBVTailIndex(bs.getBytes(), bs.size(), current);
-	}
+    @Override
+    public TailIndex build() {
+        return new SBVTailIndex(bs.getBytes(), bs.size(), current);
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		bs = (FastBitSet)in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        bs = (FastBitSet) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException{
-		out.writeObject(bs);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(bs);
+    }
 
-	private int current;
-	private FastBitSet bs;
-	private static final long serialVersionUID = 8843853578097509573L;
+    private int current;
+    private FastBitSet bs;
+    private static final long serialVersionUID = 8843853578097509573L;
 }

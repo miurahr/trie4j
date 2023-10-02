@@ -18,54 +18,53 @@ package org.trie4j.util;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class IntArray
-implements Serializable{
-	public IntArray(){
-		this.elements = new int[]{};
-	}
+public class IntArray implements Serializable {
+    public IntArray() {
+        this.elements = new int[] {};
+    }
 
-	public IntArray(int initialCapacity){
-		this.elements = new int[initialCapacity];
-	}
+    public IntArray(int initialCapacity) {
+        this.elements = new int[initialCapacity];
+    }
 
-	public IntArray(int[] elements, int size){
-		this.size = size;
-		this.elements = Arrays.copyOf(elements, size);
-	}
+    public IntArray(int[] elements, int size) {
+        this.size = size;
+        this.elements = Arrays.copyOf(elements, size);
+    }
 
-	public int size(){
-		return size;
-	}
+    public int size() {
+        return size;
+    }
 
-	public void trimToSize(){
-		elements = Arrays.copyOf(elements, size);
-	}
+    public void trimToSize() {
+        elements = Arrays.copyOf(elements, size);
+    }
 
-	public int[] getElements() {
-		return elements;
-	}
+    public int[] getElements() {
+        return elements;
+    }
 
-	public int get(int index){
-		return elements[index];
-	}
+    public int get(int index) {
+        return elements[index];
+    }
 
-	public void add(int value){
-		if(size == elements.length){
-			elements = Arrays.copyOf(elements, (int)(size * 1.2 + 1));
-		}
-		elements[size] = value;
-		size++;
-	}
-	
-	public void set(int index, int value){
-		if(index >= elements.length){
-			elements = Arrays.copyOf(elements, Math.max((int)(elements.length * 1.2), index + 1));
-		}
-		elements[index] = value;
-		size = Math.max(size, index + 1);
-	}
+    public void add(int value) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, (int) (size * 1.2 + 1));
+        }
+        elements[size] = value;
+        size++;
+    }
 
-	private int[] elements;
-	private int size;
-	private static final long serialVersionUID = 5484622364177160367L;
+    public void set(int index, int value) {
+        if (index >= elements.length) {
+            elements = Arrays.copyOf(elements, Math.max((int) (elements.length * 1.2), index + 1));
+        }
+        elements[index] = value;
+        size = Math.max(size, index + 1);
+    }
+
+    private int[] elements;
+    private int size;
+    private static final long serialVersionUID = 5484622364177160367L;
 }

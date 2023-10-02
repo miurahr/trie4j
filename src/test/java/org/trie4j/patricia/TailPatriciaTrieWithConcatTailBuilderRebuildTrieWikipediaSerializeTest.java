@@ -17,18 +17,17 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractWikipediaSerializeTest;
 import org.trie4j.Trie;
-import org.trie4j.patricia.TailPatriciaTrie;
 import org.trie4j.tail.builder.ConcatTailBuilder;
 
 public class TailPatriciaTrieWithConcatTailBuilderRebuildTrieWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie firstTrie() {
-		return new TailPatriciaTrie(new ConcatTailBuilder());
-	}
+        extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie firstTrie() {
+        return new TailPatriciaTrie(new ConcatTailBuilder());
+    }
 
-	@Override
-	protected Trie secondTrie(Trie first) {
-		return new TailPatriciaTrie(first, new ConcatTailBuilder());
-	}
+    @Override
+    protected Trie secondTrie(Trie first) {
+        return new TailPatriciaTrie(first, new ConcatTailBuilder());
+    }
 }

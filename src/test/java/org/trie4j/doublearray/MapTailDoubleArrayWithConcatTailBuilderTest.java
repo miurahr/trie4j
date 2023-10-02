@@ -20,9 +20,9 @@ import org.trie4j.MapTrie;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
 public class MapTailDoubleArrayWithConcatTailBuilderTest
-extends AbstractImmutableMapTrieTest<MapTailDoubleArray<Integer>>{
-	@Override
-	protected MapTailDoubleArray<Integer> buildSecond(MapTrie<Integer> firstTrie) {
-		return new MapTailDoubleArray<Integer>(firstTrie, new ConcatTailArrayBuilder());
-	}
+        extends AbstractImmutableMapTrieTest<MapTailDoubleArray<Integer>> {
+    @Override
+    protected MapTailDoubleArray<Integer> buildSecond(MapTrie<Integer> firstTrie) {
+        return new MapTailDoubleArray<Integer>(firstTrie, new ConcatTailArrayBuilder());
+    }
 }

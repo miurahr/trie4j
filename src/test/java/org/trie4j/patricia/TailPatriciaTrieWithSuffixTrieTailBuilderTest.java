@@ -21,32 +21,30 @@ import org.trie4j.Trie;
 import org.trie4j.tail.builder.SuffixTrieTailBuilder;
 import org.trie4j.test.WikipediaTitles;
 
-public class TailPatriciaTrieWithSuffixTrieTailBuilderTest
-extends AbstractMutableTrieTest<TailPatriciaTrie> {
-	@Override
-	protected TailPatriciaTrie createFirstTrie() {
-		return new TailPatriciaTrie(new SuffixTrieTailBuilder());
-	}
+public class TailPatriciaTrieWithSuffixTrieTailBuilderTest extends AbstractMutableTrieTest<TailPatriciaTrie> {
+    @Override
+    protected TailPatriciaTrie createFirstTrie() {
+        return new TailPatriciaTrie(new SuffixTrieTailBuilder());
+    }
 
-	public void investigate() throws Exception{
-		Trie t = new TailPatriciaTrie(new SuffixTrieTailBuilder());
-		int start = 0;
-		int end = 5;
-		int i = 0;
-		for(String word : new WikipediaTitles()){
-			if(i >= end) break;
-			if(i >= start){
-				t.insert(word);
-				System.out.println(word);
-			}
-			i++;
-		}
-		i = 0;
-		for(String word : new WikipediaTitles()){
-			if(i >= end) break;
-			if(i >= start) Assert.assertTrue(
-					i + "th word: " + word, t.contains(word));
-			i++;
-		}
-	}
+    public void investigate() throws Exception {
+        Trie t = new TailPatriciaTrie(new SuffixTrieTailBuilder());
+        int start = 0;
+        int end = 5;
+        int i = 0;
+        for (String word : new WikipediaTitles()) {
+            if (i >= end) break;
+            if (i >= start) {
+                t.insert(word);
+                System.out.println(word);
+            }
+            i++;
+        }
+        i = 0;
+        for (String word : new WikipediaTitles()) {
+            if (i >= end) break;
+            if (i >= start) Assert.assertTrue(i + "th word: " + word, t.contains(word));
+            i++;
+        }
+    }
 }

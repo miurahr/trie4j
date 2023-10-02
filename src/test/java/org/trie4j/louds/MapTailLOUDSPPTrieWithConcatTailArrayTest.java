@@ -20,13 +20,10 @@ import org.trie4j.MapTrie;
 import org.trie4j.louds.bvtree.LOUDSPPBvTree;
 import org.trie4j.tail.ConcatTailArrayBuilder;
 
-public class MapTailLOUDSPPTrieWithConcatTailArrayTest
-extends AbstractImmutableMapTrieTest<MapTailLOUDSTrie<Integer>>{
-	@Override
-	protected MapTailLOUDSTrie<Integer> buildSecond(MapTrie<Integer> firstTrie) {
-		return new MapTailLOUDSTrie<Integer>(
-				firstTrie,
-				new LOUDSPPBvTree(firstTrie.nodeSize()),
-				new ConcatTailArrayBuilder());
-	}
+public class MapTailLOUDSPPTrieWithConcatTailArrayTest extends AbstractImmutableMapTrieTest<MapTailLOUDSTrie<Integer>> {
+    @Override
+    protected MapTailLOUDSTrie<Integer> buildSecond(MapTrie<Integer> firstTrie) {
+        return new MapTailLOUDSTrie<Integer>(
+                firstTrie, new LOUDSPPBvTree(firstTrie.nodeSize()), new ConcatTailArrayBuilder());
+    }
 }

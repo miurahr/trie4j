@@ -19,10 +19,9 @@ import org.trie4j.AbstractWikipediaSerializeTest;
 import org.trie4j.Trie;
 import org.trie4j.tail.SBVConcatTailArrayBuilder;
 
-public class TailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest
-extends AbstractWikipediaSerializeTest{
-	@Override
-	protected Trie secondTrie(Trie orig) {
-		return new TailLOUDSTrie(orig, new SBVConcatTailArrayBuilder());
-	}
+public class TailLOUDSTrieWithSBVConcatTailArrayWikipediaSerializeTest extends AbstractWikipediaSerializeTest {
+    @Override
+    protected Trie secondTrie(Trie orig) {
+        return new TailLOUDSTrie(orig, new SBVConcatTailArrayBuilder());
+    }
 }

@@ -19,10 +19,9 @@ import org.trie4j.AbstractTermIdTrieTest;
 import org.trie4j.Trie;
 import org.trie4j.tail.SuffixTrieTailArray;
 
-public class TailDoubleArrayWithSuffixTrieTailBuilderTest
-extends AbstractTermIdTrieTest<TailDoubleArray>{
-	@Override
-	protected TailDoubleArray buildSecond(Trie firstTrie) {
-		return new TailDoubleArray(firstTrie, new SuffixTrieTailArray());
-	}
+public class TailDoubleArrayWithSuffixTrieTailBuilderTest extends AbstractTermIdTrieTest<TailDoubleArray> {
+    @Override
+    protected TailDoubleArray buildSecond(Trie firstTrie) {
+        return new TailDoubleArray(firstTrie, new SuffixTrieTailArray());
+    }
 }

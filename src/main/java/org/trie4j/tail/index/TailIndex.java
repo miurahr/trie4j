@@ -16,6 +16,7 @@
 package org.trie4j.tail.index;
 
 public interface TailIndex {
-	int size();
-	int get(int nodeId);
+    int size();
+
+    int get(int nodeId);
 }

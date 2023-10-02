@@ -26,29 +26,29 @@ package org.trie4j;
  * @author Takao Nakaguchi
  */
 public interface Node {
-	/**
-	 * Returns the letter of this Node.
-	 * @return letter
-	 */
-	char[] getLetters();
+    /**
+     * Returns the letter of this Node.
+     * @return letter
+     */
+    char[] getLetters();
 
-	/**
-	 * Returns true if this node is terminal (leaf).
-	 * @return true if the terminal
-	 */
-	boolean isTerminate();
+    /**
+     * Returns true if this node is terminal (leaf).
+     * @return true if the terminal
+     */
+    boolean isTerminate();
 
-	/**
-	 * Get the child that has character passed by c as the first letter.
-	 * @param c first letter of child node.
-	 * @return child node or null if no child node that has c exist.
-	 */
-	Node getChild(char c);
+    /**
+     * Get the child that has character passed by c as the first letter.
+     * @param c first letter of child node.
+     * @return child node or null if no child node that has c exist.
+     */
+    Node getChild(char c);
 
-	/**
-	 * Returns the children of this node.
-	 * The order of children is not defined.
-	 * @return children
-	 */
-	Node[] getChildren();
+    /**
+     * Returns the children of this node.
+     * The order of children is not defined.
+     * @return children
+     */
+    Node[] getChildren();
 }

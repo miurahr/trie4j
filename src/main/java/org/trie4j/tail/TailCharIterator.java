@@ -17,61 +17,62 @@ package org.trie4j.tail;
 
 import java.util.NoSuchElementException;
 
-public class TailCharIterator{
-	public TailCharIterator(CharSequence chars, int index){
-		this.chars = chars;
-		this.index = index;
-		if(this.index != -1){
-			this.next = chars.charAt(index);
-		}
-	}
+public class TailCharIterator {
+    public TailCharIterator(CharSequence chars, int index) {
+        this.chars = chars;
+        this.index = index;
+        if (this.index != -1) {
+            this.next = chars.charAt(index);
+        }
+    }
 
-	public void setOffset(int offset){
-		setIndex(offset);
-	}
-	public void setIndex(int index){
-		this.index = index;
-		this.current = '\0';
-		if(this.index != -1){
-			this.next = this.chars.charAt(index);
-		} else{
-			this.next = '\0';
-		}
-	}
+    public void setOffset(int offset) {
+        setIndex(offset);
+    }
 
-	public int getNextIndex(){
-		return index;
-	}
+    public void setIndex(int index) {
+        this.index = index;
+        this.current = '\0';
+        if (this.index != -1) {
+            this.next = this.chars.charAt(index);
+        } else {
+            this.next = '\0';
+        }
+    }
 
-	public boolean hasNext() {
-		return index != -1;
-	}
+    public int getNextIndex() {
+        return index;
+    }
 
-	public char next() {
-		if(!hasNext()){
-			throw new NoSuchElementException();
-		}
-		current = next;
-		index++;
-		char c = chars.charAt(index);
-		if(c == '\0'){
-			index = -1;
-		} else if(c == '\1'){
-			int i = chars.charAt(index + 1);
-			i += chars.charAt(index + 2) << 16;
-			index = i;
-			c = chars.charAt(index);
-		}
-		next = c;
-		return current;
-	}
+    public boolean hasNext() {
+        return index != -1;
+    }
 
-	public char current(){
-		return current;
-	}
+    public char next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        current = next;
+        index++;
+        char c = chars.charAt(index);
+        if (c == '\0') {
+            index = -1;
+        } else if (c == '\1') {
+            int i = chars.charAt(index + 1);
+            i += chars.charAt(index + 2) << 16;
+            index = i;
+            c = chars.charAt(index);
+        }
+        next = c;
+        return current;
+    }
 
-	private CharSequence chars;
-	private int index;
-	private char current = '\0';
-	private char next = '\0';
+    public char current() {
+        return current;
+    }
+
+    private CharSequence chars;
+    private int index;
+    private char current = '\0';
+    private char next = '\0';
 }

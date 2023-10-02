@@ -18,64 +18,62 @@ package org.trie4j.util;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-
 import org.trie4j.bv.BytesRank0OnlySuccinctBitVector;
 
-public class SBVIntMap<T> implements Serializable{
-	public SBVIntMap() {
-		values = new Object[]{};
-		valueIndices = new BytesRank0OnlySuccinctBitVector();
-	}
+public class SBVIntMap<T> implements Serializable {
+    public SBVIntMap() {
+        values = new Object[] {};
+        valueIndices = new BytesRank0OnlySuccinctBitVector();
+    }
 
-	public SBVIntMap(int initialCapacity){
-		values = new Object[]{};
-		valueIndices = new BytesRank0OnlySuccinctBitVector(initialCapacity);
-	}
+    public SBVIntMap(int initialCapacity) {
+        values = new Object[] {};
+        valueIndices = new BytesRank0OnlySuccinctBitVector(initialCapacity);
+    }
 
-	public int size(){
-		return valueIndices.size();
-	}
+    public int size() {
+        return valueIndices.size();
+    }
 
-	public int valuesSize(){
-		return current;
-	}
+    public int valuesSize() {
+        return current;
+    }
 
-	public int addValue(T value){
-		valueIndices.append0();
-		if(current >= values.length){
-			values = Arrays.copyOf(values, (int)(values.length * 1.2 + 1));
-		}
-		values[current] = value;
-		current++;
-		return valueIndices.size();
-	}
+    public int addValue(T value) {
+        valueIndices.append0();
+        if (current >= values.length) {
+            values = Arrays.copyOf(values, (int) (values.length * 1.2 + 1));
+        }
+        values[current] = value;
+        current++;
+        return valueIndices.size();
+    }
 
-	public int addNone(){
-		valueIndices.append1();
-		return valueIndices.size();
-	}
+    public int addNone() {
+        valueIndices.append1();
+        return valueIndices.size();
+    }
 
-	@SuppressWarnings("unchecked")
-	public T get(int id){
-		if(!valueIndices.isZero(id)){
-			throw new NoSuchElementException("No element exists at " + id);
-		}
-		return (T)values[valueIndices.rank0(id) - 1];
-	}
+    @SuppressWarnings("unchecked")
+    public T get(int id) {
+        if (!valueIndices.isZero(id)) {
+            throw new NoSuchElementException("No element exists at " + id);
+        }
+        return (T) values[valueIndices.rank0(id) - 1];
+    }
 
-	@SuppressWarnings("unchecked")
-	public T getUnsafe(int id){
-		return (T)values[valueIndices.rank0(id) - 1];
-	}
+    @SuppressWarnings("unchecked")
+    public T getUnsafe(int id) {
+        return (T) values[valueIndices.rank0(id) - 1];
+    }
 
-	public void set(int id, T value){
-		if(!valueIndices.isZero(id)) throw new IllegalStateException(
-				"try to set value for invalid id.");
-		values[valueIndices.rank0(id) - 1] = value;
-	}
+    public void set(int id, T value) {
+        if (!valueIndices.isZero(id)) throw new IllegalStateException("try to set value for invalid id.");
+        values[valueIndices.rank0(id) - 1] = value;
+    }
 
-	private int current;
-	private Object[] values;
-	private BytesRank0OnlySuccinctBitVector valueIndices = new BytesRank0OnlySuccinctBitVector();
-	private static final long serialVersionUID = -4753279563025571408L;
+    private int current;
+    private Object[] values;
+    private BytesRank0OnlySuccinctBitVector valueIndices = new BytesRank0OnlySuccinctBitVector();
+    private static final long serialVersionUID = -4753279563025571408L;
 }

@@ -16,19 +16,19 @@
 package org.trie4j.tail;
 
 public class TailUtil {
-	public static void appendChars(CharSequence tails, int index, StringBuilder builder){
-		appendChars(new TailCharIterator(tails, index), builder);
-	}
+    public static void appendChars(CharSequence tails, int index, StringBuilder builder) {
+        appendChars(new TailCharIterator(tails, index), builder);
+    }
 
-	public static void appendChars(TailCharIterator it, StringBuilder builder){
-		while(it.hasNext()){
-			builder.append(it.next());
-		}
-	}
+    public static void appendChars(TailCharIterator it, StringBuilder builder) {
+        while (it.hasNext()) {
+            builder.append(it.next());
+        }
+    }
 
-	public static String readAll(TailCharIterator it){
-		StringBuilder b = new StringBuilder();
-		while(it.hasNext()) b.append(it.next());
-		return b.toString();
-	}
+    public static String readAll(TailCharIterator it) {
+        StringBuilder b = new StringBuilder();
+        while (it.hasNext()) b.append(it.next());
+        return b.toString();
+    }
 }

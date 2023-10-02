@@ -17,9 +17,9 @@ package org.trie4j.patricia;
 
 import org.trie4j.AbstractMutableTrieTest;
 
-public class PatriciaTrieTest extends AbstractMutableTrieTest<PatriciaTrie>{
-	@Override
-	protected PatriciaTrie createFirstTrie() {
-		return new PatriciaTrie();
-	}
+public class PatriciaTrieTest extends AbstractMutableTrieTest<PatriciaTrie> {
+    @Override
+    protected PatriciaTrie createFirstTrie() {
+        return new PatriciaTrie();
+    }
 }

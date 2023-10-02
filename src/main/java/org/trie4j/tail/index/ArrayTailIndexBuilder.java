@@ -21,64 +21,61 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Arrays;
 
-public class ArrayTailIndexBuilder
-implements Externalizable, TailIndexBuilder{
-	public ArrayTailIndexBuilder() {
-	}
+public class ArrayTailIndexBuilder implements Externalizable, TailIndexBuilder {
+    public ArrayTailIndexBuilder() {}
 
-	public ArrayTailIndexBuilder(int initialCapacity) {
-		tail = new int[initialCapacity];
-		Arrays.fill(tail, -1);
-	}
+    public ArrayTailIndexBuilder(int initialCapacity) {
+        tail = new int[initialCapacity];
+        Arrays.fill(tail, -1);
+    }
 
-	@Override
-	public void add(int nodeId, int start, int end) {
-		ensureCapacity(nodeId);
-		tail[nodeId] = start;
-	}
-	
-	@Override
-	public void addEmpty(int nodeId) {
-		ensureCapacity(nodeId);
-		tail[nodeId] = -1;
-	}
+    @Override
+    public void add(int nodeId, int start, int end) {
+        ensureCapacity(nodeId);
+        tail[nodeId] = start;
+    }
 
-	@Override
-	public TailIndex build() {
-		trimToSize();
-		return new ArrayTailIndex(tail);
-	}
+    @Override
+    public void addEmpty(int nodeId) {
+        ensureCapacity(nodeId);
+        tail[nodeId] = -1;
+    }
 
-	@Override
-	public void trimToSize() {
-		tail = Arrays.copyOf(tail, size);
-	}
+    @Override
+    public TailIndex build() {
+        trimToSize();
+        return new ArrayTailIndex(tail);
+    }
 
-	private void ensureCapacity(int nodeId){
-		if(nodeId < size){
-			return;
-		}
-		if(nodeId >= tail.length){
-			tail = Arrays.copyOf(tail, (int)((nodeId + 1) * 1.2));
-			Arrays.fill(tail, size, tail.length, -1);
-		}
-		size = nodeId + 1;
-	}
+    @Override
+    public void trimToSize() {
+        tail = Arrays.copyOf(tail, size);
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		size = in.readInt();
-		tail = (int[])in.readObject();
-	}
+    private void ensureCapacity(int nodeId) {
+        if (nodeId < size) {
+            return;
+        }
+        if (nodeId >= tail.length) {
+            tail = Arrays.copyOf(tail, (int) ((nodeId + 1) * 1.2));
+            Arrays.fill(tail, size, tail.length, -1);
+        }
+        size = nodeId + 1;
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		trimToSize();
-		out.writeInt(size);
-		out.writeObject(tail);
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        size = in.readInt();
+        tail = (int[]) in.readObject();
+    }
 
-	private int[] tail = new int[]{};
-	private int size;
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        trimToSize();
+        out.writeInt(size);
+        out.writeObject(tail);
+    }
+
+    private int[] tail = new int[] {};
+    private int size;
 }

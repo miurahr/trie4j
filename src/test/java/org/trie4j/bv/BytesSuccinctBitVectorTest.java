@@ -16,15 +16,15 @@
 package org.trie4j.bv;
 
 public class BytesSuccinctBitVectorTest extends AbstractSuccinctBitVectorTest {
-	protected SuccinctBitVector create(){
-		return new BytesSuccinctBitVector();
-	}
+    protected SuccinctBitVector create() {
+        return new BytesSuccinctBitVector();
+    }
 
-	protected SuccinctBitVector create(int initialCapacity){
-		return new BytesSuccinctBitVector(initialCapacity);
-	}
+    protected SuccinctBitVector create(int initialCapacity) {
+        return new BytesSuccinctBitVector(initialCapacity);
+    }
 
-	protected SuccinctBitVector create(byte[] bytes, int bitsSize){
-		return new BytesSuccinctBitVector(bytes, bitsSize);
-	}
+    protected SuccinctBitVector create(byte[] bytes, int bitsSize) {
+        return new BytesSuccinctBitVector(bytes, bitsSize);
+    }
 }

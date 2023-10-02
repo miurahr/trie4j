@@ -20,74 +20,70 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Arrays;
-
 import org.trie4j.util.FastBitSet;
 
-public class DenseArrayTailIndexBuilder
-implements Externalizable, TailIndexBuilder{
-	public DenseArrayTailIndexBuilder(int initialCapacity) {
-		tail = new int[initialCapacity];
-	}
+public class DenseArrayTailIndexBuilder implements Externalizable, TailIndexBuilder {
+    public DenseArrayTailIndexBuilder(int initialCapacity) {
+        tail = new int[initialCapacity];
+    }
 
-	public DenseArrayTailIndexBuilder() {
-	}
+    public DenseArrayTailIndexBuilder() {}
 
-	@Override
-	public void add(int nodeId, int start, int end) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a monoinc.");
-		}
-		ensureCapacity();
-		tail[currentIndex++] = start;
-		bs.set(current++);
-	}
+    @Override
+    public void add(int nodeId, int start, int end) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a monoinc.");
+        }
+        ensureCapacity();
+        tail[currentIndex++] = start;
+        bs.set(current++);
+    }
 
-	@Override
-	public void addEmpty(int nodeId) {
-		if(nodeId != current){
-			throw new IllegalArgumentException("nodeId must be a monoinc.");
-		}
-		bs.unsetIfLE(current++);
-	}
+    @Override
+    public void addEmpty(int nodeId) {
+        if (nodeId != current) {
+            throw new IllegalArgumentException("nodeId must be a monoinc.");
+        }
+        bs.unsetIfLE(current++);
+    }
 
-	@Override
-	public void trimToSize() {
-		tail = Arrays.copyOf(tail, currentIndex);
-		bs.trimToSize();
-	}
+    @Override
+    public void trimToSize() {
+        tail = Arrays.copyOf(tail, currentIndex);
+        bs.trimToSize();
+    }
 
-	@Override
-	public TailIndex build() {
-		trimToSize();
-		return new DenseArrayTailIndex(tail, bs.getBytes(), bs.size());
-	}
+    @Override
+    public TailIndex build() {
+        trimToSize();
+        return new DenseArrayTailIndex(tail, bs.getBytes(), bs.size());
+    }
 
-	private void ensureCapacity(){
-		if(currentIndex == tail.length){
-			tail = Arrays.copyOf(tail, (int)((current + 1) * 1.2));
-		}
-	}
+    private void ensureCapacity() {
+        if (currentIndex == tail.length) {
+            tail = Arrays.copyOf(tail, (int) ((current + 1) * 1.2));
+        }
+    }
 
-	@Override
-	public void readExternal(ObjectInput in)
-	throws ClassNotFoundException, IOException{
-		current = in.readInt();
-		currentIndex = in.readInt();
-		tail = (int[])in.readObject();
-		bs = (FastBitSet)in.readObject();
-	}
+    @Override
+    public void readExternal(ObjectInput in) throws ClassNotFoundException, IOException {
+        current = in.readInt();
+        currentIndex = in.readInt();
+        tail = (int[]) in.readObject();
+        bs = (FastBitSet) in.readObject();
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException {
-		trimToSize();
-		out.writeInt(current);
-		out.writeInt(currentIndex);
-		out.writeObject(tail);
-		out.writeObject(bs);
-	}
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        trimToSize();
+        out.writeInt(current);
+        out.writeInt(currentIndex);
+        out.writeObject(tail);
+        out.writeObject(bs);
+    }
 
-	private FastBitSet bs = new FastBitSet();
-	private int[] tail = {};
-	private int current;
-	private int currentIndex;
+    private FastBitSet bs = new FastBitSet();
+    private int[] tail = {};
+    private int current;
+    private int currentIndex;
 }
